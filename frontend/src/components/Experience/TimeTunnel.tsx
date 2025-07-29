@@ -1,9 +1,11 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Float, Stars } from '@react-three/drei';
+import { Stars, Fog, EffectComposer, Bloom, DepthOfField } from '@react-three/drei';
 import * as THREE from 'three';
 import { useStore } from '../../store/useStore';
 import { useGyroscope } from '../../hooks/useGyroscope';
+import EventCrystal from './EventCrystal';
+import ParticleSystem from './ParticleSystem';
 
 export default function TimeTunnel() {
   const tunnelRef = useRef<THREE.Mesh>(null);

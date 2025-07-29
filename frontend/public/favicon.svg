@@ -1,0 +1,118 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Epic gradient for the time vortex -->
+    <radialGradient id="timeVortex" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#FF8C00;stop-opacity:0.8" />
+      <stop offset="60%" style="stop-color:#4B0082;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Glowing effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Time spiral pattern -->
+    <pattern id="timeSpiral" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M50 50 m-40 0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" 
+            fill="none" 
+            stroke="#FFD700" 
+            stroke-width="0.5" 
+            opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="250" fill="#000000"/>
+  
+  <!-- Time vortex background -->
+  <circle cx="256" cy="256" r="240" fill="url(#timeVortex)" opacity="0.8"/>
+  
+  <!-- Spiral time lines -->
+  <g transform="translate(256,256)">
+    <g filter="url(#glow)">
+      <!-- Outer spiral -->
+      <path d="M0,0 Q-100,-100 -100,0 T0,100 T100,0 T0,-100 T-100,0"
+            fill="none" 
+            stroke="#FFD700" 
+            stroke-width="3" 
+            opacity="0.6"
+            transform="scale(2)"/>
+      
+      <!-- Inner spiral -->
+      <path d="M0,0 Q-50,-50 -50,0 T0,50 T50,0 T0,-50 T-50,0"
+            fill="none" 
+            stroke="#FF8C00" 
+            stroke-width="2" 
+            opacity="0.8"/>
+    </g>
+  </g>
+  
+  <!-- Central Star of David composed of timeline fragments -->
+  <g transform="translate(256,256)" filter="url(#glow)">
+    <!-- Upper triangle -->
+    <path d="M0,-80 L-70,40 L70,40 Z" 
+          fill="none" 
+          stroke="#FFD700" 
+          stroke-width="6"
+          stroke-linejoin="round"/>
+    
+    <!-- Lower triangle -->
+    <path d="M0,80 L-70,-40 L70,-40 Z" 
+          fill="none" 
+          stroke="#FFD700" 
+          stroke-width="6"
+          stroke-linejoin="round"/>
+    
+    <!-- Time fragments inside -->
+    <circle cx="0" cy="0" r="5" fill="#FFD700">
+      <animate attributeName="r" 
+               values="5;8;5" 
+               dur="2s" 
+               repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Orbiting time particles -->
+    <g>
+      <circle cx="40" cy="0" r="3" fill="#FF8C00">
+        <animateTransform attributeName="transform" 
+                          type="rotate" 
+                          from="0 0 0" 
+                          to="360 0 0" 
+                          dur="4s" 
+                          repeatCount="indefinite"/>
+      </circle>
+      <circle cx="-40" cy="0" r="3" fill="#4B0082">
+        <animateTransform attributeName="transform" 
+                          type="rotate" 
+                          from="0 0 0" 
+                          to="-360 0 0" 
+                          dur="3s" 
+                          repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Outer ring with Hebrew letters -->
+  <g transform="translate(256,256)">
+    <text font-family="Arial Hebrew, sans-serif" 
+          font-size="24" 
+          fill="#FFD700" 
+          opacity="0.6">
+      <!-- Hebrew letters positioned in circle -->
+      <textPath href="#outerCircle">
+        זמן • עבר • הווה • עתיד
+      </textPath>
+    </text>
+  </g>
+  
+  <!-- Hidden path for text -->
+  <defs>
+    <path id="outerCircle" d="M 256,256 m -200,0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0"/>
+  </defs>
+</svg>

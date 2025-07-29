@@ -6,6 +6,7 @@ import { getDeviceInfo } from './utils/deviceDetection'
 import Experience from './components/Experience/Experience'
 import OrientationPrompt from './components/UI/OrientationPrompt'
 import Timeline from './components/Timeline'
+import EpicLoader from './components/UI/EpicLoader'
 
 function App() {
   const { 
@@ -63,14 +64,7 @@ function App() {
   }
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-royal-gold text-3xl mb-4">Loading timeline...</div>
-          <div className="text-gray-500">Preparing your journey through history</div>
-        </div>
-      </div>
-    )
+    return <EpicLoader />
   }
 
   // For desktop, use the original timeline

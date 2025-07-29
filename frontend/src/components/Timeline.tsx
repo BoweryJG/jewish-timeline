@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import type { TimelineEvent } from '../lib/supabase'
+import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from './Icons/CategoryIcons'
 
 interface TimelineProps {
   events: TimelineEvent[]
@@ -19,13 +20,13 @@ export default function Timeline({ events }: TimelineProps) {
     }
   }
 
-  const getCategoryIcon = (category: string) => {
+  const renderCategoryIcon = (category: string) => {
     switch (category) {
-      case 'win': return '🌟'
-      case 'struggle': return '💪'
-      case 'attack': return '⚔️'
-      case 'population': return '👥'
-      default: return '📍'
+      case 'win': return <VictoryIcon size={30} animate={false} />
+      case 'struggle': return <StruggleIcon size={30} animate={false} />
+      case 'attack': return <AttackIcon size={30} animate={false} />
+      case 'population': return <PopulationIcon size={30} animate={false} />
+      default: return null
     }
   }
 
@@ -58,7 +59,7 @@ export default function Timeline({ events }: TimelineProps) {
                 className="bg-gray-900 p-6 rounded-lg border border-royal-gold/20 hover:border-royal-gold/50 transition-colors"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">{getCategoryIcon(event.category)}</span>
+                  {renderCategoryIcon(event.category)}
                   <span className={`px-2 py-1 rounded text-xs font-semibold text-white ${getCategoryColor(event.category)}`}>
                     {event.category.toUpperCase()}
                   </span>

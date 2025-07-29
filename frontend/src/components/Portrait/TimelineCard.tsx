@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useStore } from '../../store/useStore';
 import type { TimelineEvent } from '../../lib/supabase';
+import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from '../Icons/CategoryIcons';
 
 interface TimelineCardProps {
   event: TimelineEvent;
@@ -22,13 +23,8 @@ export default function TimelineCard({ event, index }: TimelineCardProps) {
   };
 
   const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'win': return '🌟';
-      case 'struggle': return '💪';
-      case 'attack': return '⚔️';
-      case 'population': return '👥';
-      default: return '📍';
-    }
+    // Return null as we'll use custom SVG icons
+    return null;
   };
 
   return (
@@ -54,7 +50,12 @@ export default function TimelineCard({ event, index }: TimelineCardProps) {
           {/* Content */}
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-3xl">{getCategoryIcon(event.category)}</span>
+              <div className="flex-shrink-0">
+                {event.category === 'win' && <VictoryIcon size={32} />}
+                {event.category === 'struggle' && <StruggleIcon size={32} />}
+                {event.category === 'attack' && <AttackIcon size={32} />}
+                {event.category === 'population' && <PopulationIcon size={32} />}
+              </div>
               <div className="flex-1">
                 <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   {event.category}
