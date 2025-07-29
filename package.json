@@ -1,0 +1,21 @@
+{
+  "name": "jewish-timeline",
+  "version": "1.0.0",
+  "description": "An iconic visual odyssey through Jewish history",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "seed": "cd data-scripts && npx tsx seed-initial-events.ts",
+    "setup": "npm install && cd frontend && npm install"
+  },
+  "workspaces": [
+    "frontend",
+    "data-scripts"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
