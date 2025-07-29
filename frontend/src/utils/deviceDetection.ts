@@ -14,10 +14,10 @@ export const getDeviceInfo = () => {
   const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
   let gpuTier = 'low';
   
-  if (gl) {
+  if (gl && 'getExtension' in gl) {
     const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-    if (debugInfo) {
-      const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+    if (debugInfo && 'getParameter' in gl) {
+      const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) as string;
       // Simplified GPU detection
       if (renderer.includes('Apple') || renderer.includes('Mali-G') || renderer.includes('Adreno 6')) {
         gpuTier = 'high';

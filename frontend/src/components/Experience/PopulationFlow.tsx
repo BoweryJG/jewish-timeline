@@ -15,8 +15,7 @@ export default function PopulationFlow({
   sourcePos,
   targetPos,
   particleCount = 500,
-  flowSpeed = 0.2,
-  color = new THREE.Color(0xffd700)
+  flowSpeed = 0.2
 }: PopulationFlowProps) {
   const pointsRef = useRef<THREE.Points>(null);
   

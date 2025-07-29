@@ -82,7 +82,7 @@ export default function EventCrystal({ event, position, index, onSelect }: Event
           <MeshDistortMaterial
             color={color}
             emissive={color}
-            emissiveIntensity={emissiveIntensity}
+            emissiveIntensity={emissiveIntensity as any}
             roughness={0.1}
             metalness={0.8}
             distort={0.2}

@@ -22,11 +22,6 @@ export default function TimelineCard({ event, index }: TimelineCardProps) {
     }
   };
 
-  const getCategoryIcon = (category: string) => {
-    // Return null as we'll use custom SVG icons
-    return null;
-  };
-
   return (
     <div className={`flex items-center ${isLeft ? 'justify-start' : 'justify-end'}`}>
       <motion.div
@@ -66,7 +61,7 @@ export default function TimelineCard({ event, index }: TimelineCardProps) {
                       <div
                         key={i}
                         className={`h-1 w-3 rounded-full ${
-                          i < event.severity_impact 
+                          i < (event.severity_impact || 0)
                             ? 'bg-royal-gold' 
                             : 'bg-gray-700'
                         }`}

@@ -1,15 +1,13 @@
-import { useRef, useMemo, useState } from 'react';
+import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Stars, Fog, EffectComposer, Bloom, DepthOfField } from '@react-three/drei';
+import { Stars, Float } from '@react-three/drei';
 import * as THREE from 'three';
 import { useStore } from '../../store/useStore';
 import { useGyroscope } from '../../hooks/useGyroscope';
-import EventCrystal from './EventCrystal';
-import ParticleSystem from './ParticleSystem';
 
 export default function TimeTunnel() {
   const tunnelRef = useRef<THREE.Mesh>(null);
-  const { events, currentEventIndex } = useStore();
+  const { events } = useStore();
   const gyro = useGyroscope(true);
 
   // Create tunnel geometry

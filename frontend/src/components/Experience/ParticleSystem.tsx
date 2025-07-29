@@ -1,5 +1,5 @@
-import { useRef, useMemo, useEffect } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useRef, useMemo } from 'react';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useStore } from '../../store/useStore';
 import { particleVertexShader, particleFragmentShader } from '../../shaders/particleShader';
@@ -19,7 +19,6 @@ export default function ParticleSystem({
 }: ParticleSystemProps) {
   const pointsRef = useRef<THREE.Points>(null);
   const { quality } = useStore();
-  const { size } = useThree();
   
   // Adjust particle count based on quality setting
   const adjustedCount = useMemo(() => {
