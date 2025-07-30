@@ -1,19 +1,21 @@
 // Debug SVG circle errors
 export function debugSVGCircles() {
   // Override createElement to catch circle creation
-  const originalCreateElement = document.createElementNS;
-  document.createElementNS = function(ns: string, tagName: string) {
-    const element = originalCreateElement.call(this, ns, tagName);
+  const originalCreateElement = document.createElementNS.bind(document);
+  
+  // @ts-ignore - We're intentionally overriding the method for debugging
+  document.createElementNS = function(namespaceURI: string, qualifiedName: string): Element {
+    const element = originalCreateElement(namespaceURI, qualifiedName);
     
-    if (tagName === 'circle') {
+    if (qualifiedName === 'circle') {
       // Override setAttribute to catch when cy is set
-      const originalSetAttribute = element.setAttribute;
+      const originalSetAttribute = element.setAttribute.bind(element);
       element.setAttribute = function(name: string, value: string) {
         if (name === 'cy' && (value === 'undefined' || value === 'null' || !value)) {
           console.error('FOUND IT! Circle cy being set to:', value);
           console.trace('Stack trace:');
         }
-        originalSetAttribute.call(this, name, value);
+        originalSetAttribute(name, value);
       };
     }
     
@@ -21,7 +23,7 @@ export function debugSVGCircles() {
   };
 
   // Also check React's property setting
-  if (window.React) {
+  if ((window as any).React) {
     console.log('Monitoring React for circle elements...');
   }
 }
