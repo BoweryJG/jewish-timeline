@@ -47,19 +47,36 @@ export default function PortraitTimeline() {
 
       {/* Events */}
       <div className="relative z-10 container mx-auto px-4 py-20">
-        <div className="space-y-16">
-          {events.map((event, index) => (
-            <motion.div
-              key={event.id}
-              className="timeline-card"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <TimelineCard event={event} index={index} />
-            </motion.div>
-          ))}
-        </div>
+        {events.length === 0 ? (
+          <div className="text-center py-20">
+            <h2 className="text-2xl font-bold text-royal-gold mb-4">
+              No Timeline Events Found
+            </h2>
+            <p className="text-gray-400">
+              The timeline is empty. Check the console for loading details.
+            </p>
+            <p className="text-gray-500 text-sm mt-4">
+              Events in database: {events.length}
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-16">
+            <div className="text-center text-gray-400 text-sm mb-8">
+              Showing {events.length} historical events
+            </div>
+            {events.map((event, index) => (
+              <motion.div
+                key={event.id}
+                className="timeline-card"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <TimelineCard event={event} index={index} />
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
 
     </div>

@@ -7,6 +7,7 @@ import Experience from './components/Experience/Experience'
 import OrientationPrompt from './components/UI/OrientationPrompt'
 import Timeline from './components/Timeline'
 import EpicLoader from './components/UI/EpicLoader'
+import { mockEvents } from './data/mockEvents'
 
 function App() {
   const { 
@@ -48,16 +49,34 @@ function App() {
   }, [isLandscape, isPortrait, deviceInfo.isMobile, deviceInfo.gpuTier])
 
   async function fetchEvents() {
+    console.log('🔍 Starting to fetch events...');
+    console.log('🔑 Supabase key exists:', !!import.meta.env.VITE_SUPABASE_ANON_KEY);
+    
     try {
       const { data, error } = await supabase
         .from('timeline_events')
         .select('*')
         .order('start_date', { ascending: true })
 
-      if (error) throw error
-      setEvents(data || [])
+      console.log('📊 Supabase response:', { data, error });
+      
+      if (error) {
+        console.error('❌ Supabase error:', error);
+        throw error;
+      }
+      
+      console.log(`✅ Loaded ${data?.length || 0} events`);
+      
+      // If no events from database, use mock data
+      if (!data || data.length === 0) {
+        console.log('📝 Using mock data for testing');
+        setEvents(mockEvents);
+      } else {
+        setEvents(data);
+      }
     } catch (error) {
-      console.error('Error fetching events:', error)
+      console.error('💥 Error fetching events:', error)
+      // TODO: Show error UI to user
     } finally {
       setIsLoading(false)
     }
