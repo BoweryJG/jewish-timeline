@@ -1,6 +1,5 @@
+// BACKUP OF ORIGINAL FILE
 import { motion } from 'framer-motion';
-
-// TEMPORARY VERSION WITH NO CIRCLES TO DEBUG ERROR
 
 // Gyroscope tilt indicator
 export const GyroIndicator = ({ active = false }: { active?: boolean }) => (
@@ -8,7 +7,7 @@ export const GyroIndicator = ({ active = false }: { active?: boolean }) => (
     className="fixed bottom-4 right-4 w-16 h-16"
     animate={{ opacity: active ? 1 : 0.5 }}
   >
-    <div className="text-yellow-500 text-center">GYRO</div>
+    <div className="text-yellow-500">GYRO</div>
   </motion.div>
 );
 
@@ -20,13 +19,13 @@ export const ScrollIndicator = () => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 1 }}
   >
-    <div className="text-yellow-500 text-center">↓ SCROLL ↓</div>
+    <div className="text-yellow-500">SCROLL</div>
   </motion.div>
 );
 
 // Touch gesture indicator
 export const TouchIndicator = ({ gesture = 'tap' }: { gesture?: 'tap' | 'swipe' | 'pinch' }) => (
   <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-    <div className="text-yellow-500 text-xl font-bold">{gesture.toUpperCase()}</div>
+    <div className="text-yellow-500">{gesture.toUpperCase()}</div>
   </div>
 );

@@ -259,7 +259,12 @@ export const PopulationIcon = ({ size = 40, className = '', animate = true }: Ic
         { x: 80, y: 30, delay: 0.6 },
         { x: 40, y: 25, delay: 0.8 },
         { x: 60, y: 25, delay: 1 }
-      ].map((pos, i) => (
+      ].map((pos, i) => {
+        // Debug logging
+        if (!pos.x || !pos.y) {
+          console.error('PopulationIcon: Invalid position data:', pos, 'at index:', i);
+        }
+        return (
         <motion.g key={i}>
           {/* Branch */}
           <motion.path
@@ -289,7 +294,7 @@ export const PopulationIcon = ({ size = 40, className = '', animate = true }: Ic
             />
           </motion.g>
         </motion.g>
-      ))}
+      )})}
       
       {/* Roots spreading */}
       <motion.g
