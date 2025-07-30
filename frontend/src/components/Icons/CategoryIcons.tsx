@@ -280,9 +280,9 @@ export const PopulationIcon = ({ size = 40, className = '', animate = true }: Ic
             } : {}}
             transition={{ duration: 2, delay: pos.delay + 0.5, repeat: Infinity }}
           >
-            <circle cx={pos.x || 50} cy={(pos.y - 5) || 45} r="3" fill="url(#populationGradient)" />
+            <circle cx={pos.x ?? 50} cy={pos.y ? (pos.y - 5) : 45} r="3" fill="url(#populationGradient)" />
             <path
-              d={`M${pos.x} ${pos.y - 2} L${pos.x} ${pos.y + 5} M${pos.x - 3} ${pos.y} L${pos.x + 3} ${pos.y}`}
+              d={`M${pos.x ?? 50} ${pos.y ? pos.y - 2 : 43} L${pos.x ?? 50} ${pos.y ? pos.y + 5 : 50} M${pos.x ? pos.x - 3 : 47} ${pos.y ?? 45} L${pos.x ? pos.x + 3 : 53} ${pos.y ?? 45}`}
               stroke="url(#populationGradient)"
               strokeWidth="2"
               strokeLinecap="round"
