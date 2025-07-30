@@ -94,9 +94,9 @@ export const ScrollIndicator = () => (
         {/* Scrolling dot */}
         <motion.circle
           cx="20"
+          cy="20"
           r="4"
           fill="url(#scrollGrad)"
-          initial={{ cy: 20 }}
           animate={{ cy: [20, 40, 20] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
@@ -169,9 +169,10 @@ export const TouchIndicator = ({ gesture = 'tap' }: { gesture?: 'tap' | 'swipe' 
         return (
           <motion.g>
             <motion.circle
+              cx="35"
+              cy="35"
               r="8"
               fill="#FFD700"
-              initial={{ cx: 35, cy: 35 }}
               animate={{ 
                 cx: [35, 40, 35],
                 cy: [35, 40, 35]
@@ -179,9 +180,10 @@ export const TouchIndicator = ({ gesture = 'tap' }: { gesture?: 'tap' | 'swipe' 
               transition={{ duration: 2, repeat: Infinity }}
             />
             <motion.circle
+              cx="65"
+              cy="65"
               r="8"
               fill="#FFD700"
-              initial={{ cx: 65, cy: 65 }}
               animate={{ 
                 cx: [65, 60, 65],
                 cy: [65, 60, 65]
