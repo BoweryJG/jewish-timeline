@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import { ErrorBoundary } from './components/ErrorBoundary'
+import { debugSVGCircles } from './utils/debugSVG'
+
+// Start debugging SVG circles
+debugSVGCircles();
 
 // Override console.error to catch SVG errors
 const originalError = console.error;
