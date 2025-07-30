@@ -194,17 +194,23 @@ export const AttackIcon = ({ size = 40, className = '', animate = true }: IconPr
             cy={50}
             r="3"
             fill="url(#attackGradient)"
+            initial={{ cx: 50, cy: 50, opacity: 0, scale: 0 }}
             animate={animate ? {
               cx: [50, x, x + 10 * Math.cos(angle)],
               cy: [50, y, y + 10 * Math.sin(angle)],
               opacity: [0, 1, 0],
               scale: [0, 1, 0.5]
-            } : {}}
-            transition={{
+            } : {
+              cx: x,
+              cy: y,
+              opacity: 1,
+              scale: 1
+            }}
+            transition={animate ? {
               duration: 2,
               repeat: Infinity,
               delay: i * 0.1
-            }}
+            } : {}}
           />
         );
       })}
@@ -274,7 +280,7 @@ export const PopulationIcon = ({ size = 40, className = '', animate = true }: Ic
             } : {}}
             transition={{ duration: 2, delay: pos.delay + 0.5, repeat: Infinity }}
           >
-            <circle cx={pos.x} cy={pos.y - 5} r="3" fill="url(#populationGradient)" />
+            <circle cx={pos.x || 50} cy={(pos.y - 5) || 45} r="3" fill="url(#populationGradient)" />
             <path
               d={`M${pos.x} ${pos.y - 2} L${pos.x} ${pos.y + 5} M${pos.x - 3} ${pos.y} L${pos.x + 3} ${pos.y}`}
               stroke="url(#populationGradient)"
