@@ -7,6 +7,7 @@ import Experience from './components/Experience/Experience'
 import OrientationPrompt from './components/UI/OrientationPrompt'
 import Timeline from './components/Timeline'
 import EpicLoader from './components/UI/EpicLoader'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 function App() {
   const { 
