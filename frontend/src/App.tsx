@@ -7,7 +7,7 @@ import Experience from './components/Experience/Experience'
 import OrientationPrompt from './components/UI/OrientationPrompt'
 import Timeline from './components/Timeline'
 import EpicLoader from './components/UI/EpicLoader'
-import { mockEvents } from './data/mockEvents'
+// import { mockEvents } from './data/mockEvents'
 
 function App() {
   const { 
