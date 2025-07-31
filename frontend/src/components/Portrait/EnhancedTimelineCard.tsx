@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useStore } from '../../store/useStore';
 import type { TimelineEvent } from '../../lib/supabase';
 import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from '../Icons/CategoryIcons';
 import { audioManager } from '../../utils/audioManager';
@@ -52,7 +51,6 @@ const ParticleEffect = ({ category }: { category: string }) => {
 };
 
 export default function EnhancedTimelineCard({ event, index }: TimelineCardProps) {
-  const { setSelectedEvent } = useStore();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const isLeft = index % 2 === 0;

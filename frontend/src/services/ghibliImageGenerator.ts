@@ -92,7 +92,7 @@ export function generateGhibliPrompt(basePrompt: GhibliImagePrompt): string {
 }
 
 // Placeholder image data using gradients and patterns
-export const ghibliPlaceholders = {
+export const ghibliPlaceholders: Record<string, { gradient: string; pattern: string }> = {
   'Ancient': {
     gradient: 'linear-gradient(135deg, #8B7355 0%, #DEB887 50%, #F4E4C1 100%)',
     pattern: 'radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.3) 0%, transparent 50%)',

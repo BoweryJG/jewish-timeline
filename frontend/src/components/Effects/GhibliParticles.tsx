@@ -6,15 +6,6 @@ interface ParticleSystemProps {
   isActive: boolean;
 }
 
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  duration: number;
-  delay: number;
-}
-
 export default function GhibliParticles({ category, isActive }: ParticleSystemProps) {
   const particles = useMemo(() => {
     const count = category === 'win' ? 20 : category === 'attack' ? 15 : 12;

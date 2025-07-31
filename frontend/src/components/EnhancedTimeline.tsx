@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import type { TimelineEvent } from '../lib/supabase'
 import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from './Icons/CategoryIcons'
@@ -15,32 +15,9 @@ interface TimelineProps {
   events: TimelineEvent[]
 }
 
-interface ParticleProps {
-  color: string
-  delay: number
-}
 
-const FloatingParticle = ({ color, delay }: ParticleProps) => (
-  <motion.div
-    className="absolute w-1 h-1 rounded-full pointer-events-none"
-    style={{ backgroundColor: color }}
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{
-      opacity: [0, 1, 1, 0],
-      scale: [0, 1, 1, 0],
-      x: [0, Math.random() * 100 - 50],
-      y: [0, Math.random() * -100 - 50],
-    }}
-    transition={{
-      duration: 3,
-      delay,
-      repeat: Infinity,
-      repeatDelay: Math.random() * 2,
-    }}
-  />
-)
 
-const TimelineNode = ({ event, index }: { event: TimelineEvent; index: number }) => {
+const TimelineNode = ({ event }: { event: TimelineEvent; index: number }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [ref, inView] = useInView({
     threshold: 0.5,
@@ -264,10 +241,8 @@ const EventCard = ({ event, index, onClick }: {
 export default function EnhancedTimeline({ events }: TimelineProps) {
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: containerRef })
+  useScroll({ target: containerRef })
   
-  // Parallax transforms
-  const spineGlow = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
   
   // Merge era markers with events
   const timelineItems = useMemo(() => {

@@ -175,7 +175,7 @@ const VolumetricFog = () => {
 
 export default function EnhancedTimeTunnel() {
   const tunnelRef = useRef<THREE.Mesh>(null);
-  const { events, selectedEvent } = useStore();
+  const { events } = useStore();
   const gyro = useGyroscope(true);
   const { camera } = useThree();
 
@@ -377,8 +377,9 @@ export default function EnhancedTimeTunnel() {
           radius={0.8}
         />
         <ChromaticAberration
-          offset={[0.0005, 0.0005]}
+          offset={new THREE.Vector2(0.0005, 0.0005)}
           radialModulation
+          modulationOffset={0}
         />
       </EffectComposer>
     </>
