@@ -1,7 +1,9 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
+import { useInView as useInViewObserver } from 'react-intersection-observer'
 import type { TimelineEvent } from '../lib/supabase'
 import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from './Icons/CategoryIcons'
+import { audioManager } from '../utils/audioManager'
 
 interface TimelineProps {
   events: TimelineEvent[]

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -89,4 +90,112 @@ body:not(.desktop-body) {
 @keyframes float {
   from { transform: translateY(0); }
   to { transform: translateY(-200px); }
+}
+
+/* Enhanced star field animation */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, #eee, transparent),
+    radial-gradient(1px 1px at 50px 160px, #eee, transparent),
+    radial-gradient(1px 1px at 130px 40px, #eee, transparent),
+    radial-gradient(2px 2px at 80px 10px, #eee, transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: stars-move 100s linear infinite;
+}
+
+@keyframes stars-move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-200px);
+  }
+}
+
+/* Glassmorphism support */
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+  .glass {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+}
+
+/* Deep space colors */
+.bg-deep-indigo {
+  background-color: #0a0a2a;
+}
+
+/* Royal gold color utilities */
+.text-royal-gold {
+  color: #ffd700;
+}
+
+.bg-royal-gold {
+  background-color: #ffd700;
+}
+
+.border-royal-gold {
+  border-color: #ffd700;
+}
+
+.from-royal-gold {
+  --tw-gradient-from: #ffd700;
+}
+
+.via-royal-gold {
+  --tw-gradient-via: #ffd700;
+}
+
+.to-royal-gold {
+  --tw-gradient-to: #ffd700;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.8);
+}
+
+/* Glow effects */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.glow-gold-intense {
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+}
+
+/* Backdrop blur fallback */
+.backdrop-blur-fallback {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Disable text selection on interactive elements */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

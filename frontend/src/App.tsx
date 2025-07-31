@@ -5,7 +5,7 @@ import { useDeviceOrientation } from './hooks/useDeviceOrientation'
 import { getDeviceInfo } from './utils/deviceDetection'
 import Experience from './components/Experience/Experience'
 import OrientationPrompt from './components/UI/OrientationPrompt'
-import Timeline from './components/Timeline'
+import EnhancedTimeline from './components/EnhancedTimeline'
 import EpicLoader from './components/UI/EpicLoader'
 // import { mockEvents } from './data/mockEvents'
 
@@ -139,7 +139,7 @@ function App() {
         </header>
         
         <main className="pt-24">
-          <Timeline events={events} />
+          <EnhancedTimeline events={events} />
         </main>
       </div>
     )

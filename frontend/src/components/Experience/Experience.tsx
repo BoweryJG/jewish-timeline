@@ -3,8 +3,8 @@ import { Suspense } from 'react';
 import { Loader } from '@react-three/drei';
 import { useDeviceOrientation } from '../../hooks/useDeviceOrientation';
 import { useStore } from '../../store/useStore';
-import TimeTunnel from './TimeTunnel';
-import PortraitTimeline from '../Portrait/PortraitTimeline';
+import EnhancedTimeTunnel from './EnhancedTimeTunnel';
+import EnhancedPortraitTimeline from '../Portrait/EnhancedPortraitTimeline';
 import { getDeviceInfo } from '../../utils/deviceDetection';
 
 export default function Experience() {
@@ -28,7 +28,7 @@ export default function Experience() {
   };
 
   if (!shouldShowLandscape) {
-    return <PortraitTimeline />;
+    return <EnhancedPortraitTimeline />;
   }
 
   return (
@@ -40,7 +40,7 @@ export default function Experience() {
         className="absolute inset-0"
       >
         <Suspense fallback={null}>
-          <TimeTunnel />
+          <EnhancedTimeTunnel />
         </Suspense>
       </Canvas>
       <Loader />
