@@ -32,3 +32,16 @@ build/
 
 # TypeScript
 *.tsbuildinfo
+
+# Image Service
+image-service/.env
+image-service/generated/
+image-service/queue/
+image-service/temp/
+*.tiff
+*.png
+*-highres.jpg
+*-original.jpg
+
+# Keep only optimized images in frontend
+!frontend/public/images/events/*.jpg

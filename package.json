@@ -7,7 +7,17 @@
     "dev": "cd frontend && npm run dev",
     "build": "cd frontend && npm run build",
     "seed": "cd data-scripts && npx tsx seed-initial-events.ts",
-    "setup": "npm install && cd frontend && npm install"
+    "setup": "npm install && cd frontend && npm install",
+    "download-images": "node scripts/download-timeline-images.js",
+    "generate-images": "node scripts/generate-ai-images.js",
+    "generate-images:dalle": "node scripts/generate-ai-images.js dalle",
+    "generate-images:bing": "node scripts/generate-ai-images.js bing",
+    "images": "node scripts/generate-all-timeline-images.js",
+    "images:ai": "node scripts/generate-timeline-images-free.js",
+    "images:bing": "node scripts/generate-timeline-images-bing.js",
+    "images:historical": "node scripts/fetch-historical-images.js",
+    "images:replicate": "cd image-service && npm run generate",
+    "images:setup": "cd image-service && npm run setup"
   },
   "workspaces": [
     "frontend",
@@ -17,5 +27,9 @@
     "@types/node": "^20.11.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "puppeteer": "^24.15.0"
   }
 }
