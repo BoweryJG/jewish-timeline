@@ -81,6 +81,11 @@ function App() {
     return <EpicLoader />
   }
 
+  console.log('🔍 Device info:', deviceInfo);
+  console.log('📱 Is mobile?', deviceInfo.isMobile);
+  console.log('🏞️ Is landscape?', isLandscape);
+  console.log('📐 View mode:', viewMode);
+
   // For desktop, use the original timeline
   if (!deviceInfo.isMobile) {
     return (
