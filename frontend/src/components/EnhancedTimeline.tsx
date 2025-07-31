@@ -5,6 +5,7 @@ import type { TimelineEvent } from '../lib/supabase'
 import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from './Icons/CategoryIcons'
 import { audioManager } from '../utils/audioManager'
 import { ghibliImageUrls, getGhibliPlaceholder } from '../services/ghibliImageGenerator'
+import { getEventImages, eraColorPalettes } from '../services/epicTimelineImages'
 import GhibliBackground from './GhibliBackground'
 import TimelineSpine from './TimelineSpine'
 import GhibliParticles from './Effects/GhibliParticles'
@@ -88,7 +89,12 @@ const EventCard = ({ event, index, onClick }: {
   })
   const [imageLoaded, setImageLoaded] = useState(false)
   const isLeft = index % 2 === 0
-  const eventImages = ghibliImageUrls[event.title] || []
+  
+  // Use epic timeline images if available, fallback to old system
+  const epicImageSet = getEventImages(event.title)
+  const eventImages = epicImageSet 
+    ? [epicImageSet.hero.url] 
+    : ghibliImageUrls[event.title] || []
 
   const getCategoryStyle = (category: string) => {
     switch (category) {
@@ -164,15 +170,22 @@ const EventCard = ({ event, index, onClick }: {
           WebkitBackdropFilter: 'blur(20px)',
         }}
       >
-        {/* Event image */}
+        {/* Epic Event Image with Enhanced Effects */}
         {eventImages.length > 0 && (
-          <div className="relative h-48 -m-[2px] mb-4 overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
+          <motion.div 
+            className="relative h-64 -m-[2px] mb-4 overflow-hidden group"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Ken Burns effect on hover */}
+            <motion.div 
+              className="absolute inset-0 bg-cover bg-center transition-all duration-[10s]"
               style={{
                 backgroundImage: imageLoaded ? `url(${eventImages[0]})` : getGhibliPlaceholder(event.epoch || 'Ancient'),
-                opacity: imageLoaded ? 1 : 0.7
+                opacity: imageLoaded ? 1 : 0.7,
+                filter: epicImageSet ? 'saturate(1.1) contrast(1.05)' : 'none'
               }}
+              whileHover={{ scale: 1.1 }}
             />
             <img
               src={eventImages[0]}
@@ -180,8 +193,34 @@ const EventCard = ({ event, index, onClick }: {
               className="sr-only"
               onLoad={() => setImageLoaded(true)}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-          </div>
+            
+            {/* Era-specific color overlay */}
+            {epicImageSet && (
+              <div 
+                className="absolute inset-0 mix-blend-overlay opacity-20"
+                style={{
+                  background: `linear-gradient(135deg, ${
+                    eraColorPalettes[event.epoch || 'Ancient']?.primary || '#D4A574'
+                  }, transparent)`
+                }}
+              />
+            )}
+            
+            {/* Enhanced gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+            
+            {/* Image caption on hover */}
+            {epicImageSet && (
+              <motion.div 
+                className="absolute bottom-0 left-0 right-0 p-4 text-white"
+                initial={{ opacity: 0, y: 20 }}
+                whileHover={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <p className="text-sm font-light italic">{epicImageSet.hero.caption}</p>
+              </motion.div>
+            )}
+          </motion.div>
         )}
         {/* Glassmorphism overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-white/0 to-transparent rounded-2xl pointer-events-none" />
