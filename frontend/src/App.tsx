@@ -133,7 +133,11 @@ function App() {
               The Jewish Timeline: An Iconic Visual Odyssey
             </h1>
             <p className="text-gray-300 mt-1">
-              A journey through 3,500 years of Jewish history
+              From the ancient sands of Mesopotamia to the modern age - A 4,000-year saga of faith, resilience, and triumph
+            </p>
+            <p className="text-gray-400 text-sm mt-2">
+              Beginning in Ur of the Chaldees where Abraham first heard the divine call, through the forging of a nation at Sinai, 
+              the glory of Jerusalem, the tears of exile, and the miraculous return - witness the eternal story of a people who refused to disappear
             </p>
           </div>
         </header>

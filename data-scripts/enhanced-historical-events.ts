@@ -21,6 +21,70 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
 // Comprehensive historical events data - Part 1: Ancient to Medieval
 const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] = [
+  // Origins and Pre-Abrahamic Era
+  {
+    epoch: 'Ancient',
+    start_date: '0001-01-01',
+    end_date: '0001-01-01',
+    location: {
+      lat: 30.9626, lng: 46.1025,
+      name: 'Ur of the Chaldees',
+      region: 'Mesopotamia',
+      country: 'Ancient Sumer'
+    },
+    category: 'win',
+    title: 'Origins in Ancient Mesopotamia',
+    synopsis: '(c. 2000 BCE) In the shadow of the great ziggurat of Ur, where the Tigris and Euphrates rivers birthed civilization itself, dwelt the ancestors of a people destined to change the world. Here, in this metropolis of mud-brick and bronze, where cuneiform tablets recorded humanity\'s first laws and myths, the family of Terah lived among idol-worshippers and star-gazers. Yet from this polytheistic crucible would emerge a revolutionary idea: One God, invisible and eternal, creator of all.',
+    severity_impact: 8,
+    sources: [{
+      title: 'Archaeological Evidence from Ur',
+      url: 'https://www.penn.museum/collections/ur-digitization-project',
+      type: 'archaeological'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Ancient',
+    start_date: '0001-01-01',
+    end_date: '0001-01-01',
+    location: {
+      lat: 31.2, lng: 34.7,
+      name: 'Canaan',
+      region: 'Levant',
+      country: 'Ancient Canaan'
+    },
+    category: 'win',
+    title: 'The Ancient Canaanites',
+    synopsis: '(c. 3500-2000 BCE) The land between the River and the Sea - a narrow bridge connecting empires, where milk and honey flowed through valleys guarded by ancient fortified cities. Here dwelt the Canaanites, master traders and artisans, the Hittites with their iron secrets, the Jebusites in their mountain strongholds. Their blood would mingle with that of the Hebrews, their DNA a testament written in every Jewish genome today - we are not mere visitors to this land, but its very children, bone of its bone, flesh of its flesh.',
+    severity_impact: 7,
+    sources: [{
+      title: 'Genomic History of Bronze Age Levant',
+      url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10212583/',
+      type: 'scientific'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Ancient',
+    start_date: '0001-01-01', 
+    end_date: '0001-01-01',
+    location: {
+      lat: 36.8065, lng: 40.0853,
+      name: 'Harran',
+      region: 'Upper Mesopotamia',
+      country: 'Ancient Aram'
+    },
+    category: 'win',
+    title: 'Migration to Harran',
+    synopsis: '(c. 2000-1900 BCE) The first exodus began not with Moses but with Terah, who gathered his household - including his son Abram and grandson Lot - and set forth from Ur\'s familiar streets into the unknown. Northward they journeyed, following the fertile crescent\'s arc, until they reached Harran, city of the moon-god Sin. Here, at the crossroads where caravans from east and west exchanged silk and spices, stories and gods, they paused. But for young Abram, this was merely a waystation on a journey toward an unimaginable destiny.',
+    severity_impact: 7,
+    sources: [{
+      title: 'Book of Genesis 11:31',
+      url: 'https://www.sefaria.org/Genesis.11.31',
+      type: 'primary'
+    }],
+    verified: true
+  },
   // Biblical Era - Using year 1 for BCE dates with note in synopsis
   {
     epoch: 'Ancient',
@@ -33,8 +97,32 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
     },
     category: 'win',
     title: 'Abraham\'s Covenant',
-    synopsis: '(c. 1800 BCE) Abraham enters into a covenant with God, marking the birth of the Jewish people and the promise of the Land of Israel.',
+    synopsis: '(c. 1800 BCE) "Lech Lecha" - Go forth! The voice that spoke to Abraham shattered the silence of history. Leave your land, your birthplace, your father\'s house, and go to the land I will show you. With these words, monotheism entered the world stage. One man\'s willingness to answer an impossible call birthed a nation that would carry the torch of ethical monotheism through millennia of darkness. Under star-drunk skies, God sealed a covenant: your descendants shall be as numerous as the stars, and this land shall be theirs forever. The archaeological record confirms this era of Amorite migrations, but no tablet captures the revolution that began in one man\'s heart.',
     severity_impact: 10,
+    sources: [{
+      title: 'Book of Genesis',
+      url: 'https://www.sefaria.org/Genesis',
+      type: 'primary'
+    }, {
+      title: 'Ancient Near Eastern Migrations',
+      url: 'https://www.jstor.org/stable/1356474',
+      type: 'archaeological'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Ancient',
+    start_date: '0001-01-02',
+    end_date: '0001-01-03',
+    location: {
+      lat: 31.5, lng: 35.1,
+      name: 'Hebron',
+      region: 'Canaan'
+    },
+    category: 'win',
+    title: 'The Patriarchs and Matriarchs',
+    synopsis: '(c. 1800-1600 BCE) Three generations of dreamers and wrestlers with the divine laid the foundation of a people. Abraham, the knight of faith who argued with God to save Sodom; Sarah, who laughed at impossibility and gave birth to it; Isaac, the bridge between father and grandson; Rebecca, who secured the blessing for the younger son; Jacob, who wrestled with an angel through the night and emerged limping but victorious, earning the name Israel - "one who struggles with God." From his loins came twelve sons, each a tribe, each a different facet of the Jewish soul: Judah\'s leadership, Levi\'s priesthood, Joseph\'s dreams, Benjamin\'s fierce loyalty.',
+    severity_impact: 9,
     sources: [{
       title: 'Book of Genesis',
       url: 'https://www.sefaria.org/Genesis',
@@ -43,9 +131,52 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
     verified: true
   },
   {
-    epoch: 'Ancient',
+    epoch: 'Ancient', 
     start_date: '0001-01-03',
     end_date: '0001-01-04',
+    location: {
+      lat: 30.5852, lng: 31.5018,
+      name: 'Goshen',
+      region: 'Egypt'
+    },
+    category: 'win',
+    title: 'Descent into Egypt',
+    synopsis: '(c. 1700 BCE) Dreams and famine wove the next chapter. Joseph, sold into slavery by jealous brothers, rose through prison and prophecy to stand at Pharaoh\'s right hand. When seven lean years devoured seven fat ones, Jacob\'s sons came crawling to Egypt for grain and found their brother crowned in glory. "I am Joseph," he wept. "Is my father still alive?" Thus began the sojourn in the Black Land, where 70 souls would multiply like stars, growing strong on the Nile\'s abundance. In Goshen\'s fertile pastures, they preserved their identity, their language, their covenant, even as they learned the wisdom of Egypt.',
+    severity_impact: 8,
+    population_after: 70,
+    sources: [{
+      title: 'Book of Genesis and Exodus',
+      url: 'https://www.sefaria.org/Exodus',
+      type: 'primary'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Ancient',
+    start_date: '0001-01-04',
+    end_date: '0001-01-05',
+    location: {
+      lat: 30.5852, lng: 31.5018,
+      name: 'Egypt',
+      region: 'Nile Delta'
+    },
+    category: 'struggle',
+    title: 'Egyptian Slavery',
+    synopsis: '(c. 1600-1250 BCE) "A new Pharaoh arose who knew not Joseph" - and with that chilling line, paradise became prison. The descendants of the one who saved Egypt were now feared as a fifth column, their numbers a threat. Chains replaced freedom, the taskmaster\'s whip replaced Pharaoh\'s favor. Under the scorching sun, Hebrew hands built Pithom and Ramses, mighty store-cities whose bricks were mortared with blood and tears. Yet the more they were oppressed, the more they multiplied - as if suffering itself was the crucible that forged them from a family into a nation. In their cries, God heard the echo of an ancient promise.',
+    severity_impact: 8,
+    population_before: 70,
+    population_after: 600000,
+    sources: [{
+      title: 'Book of Exodus',
+      url: 'https://www.sefaria.org/Exodus.1',
+      type: 'primary'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Ancient',
+    start_date: '0001-01-05',
+    end_date: '0001-01-06',
     location: {
       lat: 30.3285, lng: 33.5359,
       name: 'Mount Sinai',
@@ -53,7 +184,7 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
     },
     category: 'win',
     title: 'Receiving of the Torah',
-    synopsis: '(c. 1250 BCE) Moses receives the Ten Commandments and the Torah at Mount Sinai, establishing the Jewish law and covenant with God.',
+    synopsis: '(c. 1250 BCE) At Sinai, heaven kissed earth. The mountain smoked and trembled as the Infinite spoke to the finite. "I am the Lord your God who brought you out of Egypt" - thus began the Ten Commandments, carved by divine fire into stone. But more than law was given that day: 613 commandments formed a blueprint for holy living, a constitution for a kingdom of priests. The ragtag slaves who stood at Sinai\'s foot, still tasting freedom on their lips, said "Na\'aseh v\'nishma" - we will do and we will understand. In that moment of cosmic audacity, they accepted a burden and a blessing that would outlast empires.',
     severity_impact: 10,
     sources: [{
       title: 'Book of Exodus',
@@ -64,8 +195,28 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
   },
   {
     epoch: 'Ancient',
-    start_date: '0001-01-05',
-    end_date: '0001-01-06',
+    start_date: '0001-01-06',
+    end_date: '0001-01-07',
+    location: {
+      lat: 30.0, lng: 34.5,
+      name: 'Wilderness of Sinai',
+      region: 'Sinai Peninsula'
+    },
+    category: 'win',
+    title: 'Formation of Jewish Law and Identity',
+    synopsis: '(c. 1250-1210 BCE) Forty years in the wilderness - a generation of metamorphosis. Like a divine chrysalis, the desert transformed slaves into free people, subjects into citizens of eternity. They built the Mishkan, a portable palace for the Divine Presence, its gold and crimson curtains a splash of heaven in the austere desert. Here the priesthood was ordained, here the Levites sang, here the pillar of cloud by day and fire by night reminded them they were never alone. Through rebellion and plague, through the sin of the spies and the rebellion of Korach, through the death of Miriam and Aaron, they learned the hard lessons of freedom. By journey\'s end, Moses could look upon a people reborn.',
+    severity_impact: 9,
+    sources: [{
+      title: 'Books of Exodus, Leviticus, Numbers, Deuteronomy',
+      url: 'https://www.sefaria.org/Torah',
+      type: 'primary'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Ancient',
+    start_date: '0001-01-07',
+    end_date: '0001-01-08',
     location: {
       lat: 31.7683, lng: 35.2137,
       name: 'Jerusalem',
@@ -73,7 +224,7 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
     },
     category: 'win',
     title: 'King David Establishes Jerusalem',
-    synopsis: '(c. 1000 BCE) King David conquers Jerusalem and makes it the eternal capital of the Jewish people, uniting the twelve tribes of Israel.',
+    synopsis: '(c. 1000 BCE) The sweet singer of Israel, the shepherd-king with blood on his hands and psalms on his lips, conquered the last Canaanite stronghold. Jerusalem - City of Peace, ironically won by war - became David\'s capital, chosen precisely because it belonged to no tribe and thus could belong to all. Here he brought the Ark of the Covenant with dancing and rejoicing, here he planned a Temple he would never build, here he united twelve fractious tribes into one nation under God. The city that had stood since time immemorial now began its eternal romance with the Jewish people.',
     severity_impact: 10,
     population_after: 100000,
     sources: [{
@@ -94,7 +245,7 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
     },
     category: 'win',
     title: 'First Temple Built',
-    synopsis: '(c. 960 BCE) King Solomon completes construction of the First Temple, creating the central place of Jewish worship and the dwelling place of God\'s presence.',
+    synopsis: '(c. 960 BCE) In seven years of sacred labor, Solomon transformed his father\'s dream into limestone and cedar, gold and bronze. The First Temple rose on Mount Moriah, where Abraham once bound Isaac, where heaven and earth are said to meet. Hiram\'s craftsmen from Tyre worked alongside Israelite builders to create a wonder of the ancient world. On dedication day, as thousands of offerings sent smoke heavenward, the Divine Presence descended in a cloud so thick the priests could not stand to minister. Solomon\'s prayer still echoes: "Will God indeed dwell on earth? Behold, the heavens cannot contain You, how much less this house I have built!"',
     severity_impact: 10,
     sources: [{
       title: 'Book of Kings',
@@ -114,7 +265,7 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
     },
     category: 'attack',
     title: 'Babylonian Destruction',
-    synopsis: '(586 BCE) Nebuchadnezzar II destroys Jerusalem and the First Temple, beginning the Babylonian exile and the first major diaspora.',
+    synopsis: '(586 BCE) On the ninth of Av, the unthinkable happened. Nebuchadnezzar\'s Babylonian armies breached Jerusalem\'s walls after a siege that reduced mothers to eating their children. The Temple - that dwelling place of the Infinite - was put to the torch. As flames devoured cedar and gold melted into streams, the Levites sang psalms until their voices were stilled forever. The last Davidic king watched his sons slaughtered before his eyes were gouged out. In chains, the cream of Judah marched to Babylon, leaving behind a desolate land. By the rivers of Babylon, they would sit and weep, but they would not forget.',
     severity_impact: 10,
     population_before: 150000,
     population_after: 40000,
@@ -136,7 +287,7 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
     },
     category: 'attack',
     title: 'Romans Destroy Second Temple',
-    synopsis: 'Roman legions under Titus breach Jerusalem\'s walls and burn the Second Temple on the 9th of Av, the same date as the First Temple\'s destruction.',
+    synopsis: '(70 CE) History stuttered and repeated its cruelest joke - again on the ninth of Av. Titus\' legions, after a siege that turned Jerusalem into a charnel house, broke through. Josephus records how the starving defenders fought over corpses for food, how the Romans crucified 500 Jews daily outside the walls until wood ran short. When the Temple caught fire - some say by accident, others by design - the gold melted between the stones. Roman soldiers pried apart the very foundations to retrieve it, fulfilling Jesus\' prophecy that not one stone would be left upon another. A million Jews died or were enslaved. The smoke that rose from the burning sanctuary would not clear for 2,000 years.',
     severity_impact: 10,
     population_before: 1200000,
     population_after: 200000,
@@ -158,7 +309,7 @@ const ancientEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] =
     },
     category: 'struggle',
     title: 'Bar Kokhba Revolt',
-    synopsis: 'Simon Bar Kokhba leads the last major Jewish revolt against Rome. Initial victories give way to devastating defeat and exile.',
+    synopsis: '(132-135 CE) "The Son of the Star" they called him - Bar Kokhba, a messianic warrior who for three glorious years made Rome tremble. Rabbi Akiva himself declared him the Messiah. Jewish coins proclaimed "Year One of the Redemption of Israel." But Hadrian summoned his best general and twelve legions. The final battle at Betar fell on the ninth of Av - that cursed date again. The Romans\'s revenge was genocide: 580,000 Jews killed, nearly a thousand villages razed. Hadrian renamed Jerusalem "Aelia Capitolina," banned Jews from entering except once a year to mourn, and renamed Judea "Syria Palaestina" to erase Jewish memory. The land promised to Abraham lay desolate, its children scattered to the four winds.',
     severity_impact: 10,
     population_before: 2000000,
     population_after: 500000,
@@ -185,7 +336,7 @@ const medievalEvents: Omit<TimelineEvent, 'id' | 'created_at' | 'updated_at'>[] 
     },
     category: 'attack',
     title: 'Worms Massacre - First Crusade',
-    synopsis: 'Crusaders slaughter 800 Jews in Worms. Many choose martyrdom, killing themselves and their children rather than convert to Christianity.',
+    synopsis: '(1096) "God wills it!" cried the Crusaders marching to liberate the Holy Land, but they found their first infidels closer to home. In Worms, where Jews had lived peacefully for centuries, contributing Talmudic wisdom and trade wealth, the mob demanded conversion or death. Eight hundred souls faced the choice. Mothers slaughtered their babies rather than see them baptized, fathers blessed God before cutting their children\'s throats, then their own. "Hear O Israel, the Lord our God, the Lord is One" - the Shema on their lips as blood ran in the synagogue. The bishop who tried to protect them was overwhelmed. European soil drank deeply of Jewish blood that spring, and would develop a taste for it.',
     severity_impact: 9,
     population_before: 1000,
     population_after: 200,

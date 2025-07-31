@@ -18,7 +18,7 @@ export interface TimelineEvent {
     region: string
     country?: string
   }
-  category: 'struggle' | 'attack' | 'win' | 'population'
+  category: 'struggle' | 'attack' | 'win' | 'population' | 'origins' | 'migration' | 'covenant' | 'cultural' | 'spiritual' | 'golden_age' | 'innovation' | 'resilience'
   title: string
   synopsis: string
   severity_impact?: number
