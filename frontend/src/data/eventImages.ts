@@ -17,9 +17,9 @@ export interface EventImageSet {
 export const eventImages: Record<string, EventImageSet> = {
   'The Exodus from Egypt': {
     hero: {
-      url: 'https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=1200&h=600&fit=crop',
-      caption: 'Ancient Egyptian pyramids at sunset',
-      credit: 'Unsplash'
+      url: '/images/events/moses-parting-red-sea.jpg',
+      caption: 'Moses parting the Red Sea - AI generated artwork',
+      credit: 'AI Generated'
     },
     gallery: [
       {
@@ -33,7 +33,7 @@ export const eventImages: Record<string, EventImageSet> = {
         credit: 'Unsplash'
       }
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=400&h=300&fit=crop'
+    thumbnail: '/images/events/moses-parting-red-sea.jpg'
   },
   'Destruction of the First Temple': {
     hero: {
