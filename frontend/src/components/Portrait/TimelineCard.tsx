@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useStore } from '../../store/useStore';
 import type { TimelineEvent } from '../../lib/supabase';
-import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from '../Icons/CategoryIcons';
+// import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from '../Icons/CategoryIcons';
 
 interface TimelineCardProps {
   event: TimelineEvent;
@@ -46,10 +46,15 @@ export default function TimelineCard({ event, index }: TimelineCardProps) {
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-3">
               <div className="flex-shrink-0">
-                {event.category === 'win' && <VictoryIcon size={32} />}
-                {event.category === 'struggle' && <StruggleIcon size={32} />}
-                {event.category === 'attack' && <AttackIcon size={32} />}
-                {event.category === 'population' && <PopulationIcon size={32} />}
+                {/* Icons temporarily removed - TODO: restore when fixed */}
+                <div className="w-8 h-8 rounded-full bg-royal-gold/20 flex items-center justify-center">
+                  <span className="text-royal-gold text-lg font-bold">
+                    {event.category === 'win' && '✓'}
+                    {event.category === 'struggle' && '⚡'}
+                    {event.category === 'attack' && '⚔'}
+                    {event.category === 'population' && '👥'}
+                  </span>
+                </div>
               </div>
               <div className="flex-1">
                 <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
