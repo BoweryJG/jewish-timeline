@@ -66,14 +66,9 @@ function App() {
       }
       
       console.log(`✅ Loaded ${data?.length || 0} events`);
+      console.log('📋 First few events:', data?.slice(0, 3));
       
-      // If no events from database, use mock data
-      if (!data || data.length === 0) {
-        console.log('📝 Using mock data for testing');
-        setEvents(mockEvents);
-      } else {
-        setEvents(data);
-      }
+      setEvents(data || [])
     } catch (error) {
       console.error('💥 Error fetching events:', error)
       // TODO: Show error UI to user

@@ -82,7 +82,12 @@ export default function TimelineCard({ event, index }: TimelineCardProps) {
             </h3>
             
             <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
-              <span>{new Date(event.start_date).getFullYear()}</span>
+              <span>{
+                // Handle dates like "0586-01-01" as BCE dates
+                event.start_date.startsWith('0') && event.start_date.length === 10
+                  ? `-${parseInt(event.start_date.substring(0, 4))} BCE`
+                  : new Date(event.start_date).getFullYear()
+              }</span>
               {event.location && (
                 <>
                   <span>•</span>
