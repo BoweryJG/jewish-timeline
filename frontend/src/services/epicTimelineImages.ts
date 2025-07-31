@@ -261,7 +261,7 @@ export const epicTimelineImages: Record<string, EpicImageSet> = {
   // Additional event mappings with placeholder references for missing images
   'Babylonian Destruction': {
     hero: {
-      url: '/images/events/temple-destruction.jpg', // To be generated
+      url: '/images/events/temple-destruction.jpg',
       caption: 'The unthinkable - Temple in flames',
       emotionalTone: 'catastrophic loss, exile begins',
       colorPalette: {
@@ -274,7 +274,7 @@ export const epicTimelineImages: Record<string, EpicImageSet> = {
 
   'Spanish Inquisition': {
     hero: {
-      url: '/images/events/spanish-expulsion.jpg', // To be generated
+      url: '/images/events/spanish-expulsion.jpg',
       caption: '1492 - Exile from Sefarad',
       emotionalTone: 'forced wandering, hidden faith',
       colorPalette: {
@@ -287,7 +287,7 @@ export const epicTimelineImages: Record<string, EpicImageSet> = {
 
   'Holocaust': {
     hero: {
-      url: '/images/events/warsaw-ghetto-uprising.jpg', // To be generated
+      url: '/images/events/warsaw-ghetto-uprising.jpg',
       caption: 'In darkness, the spark of resistance',
       emotionalTone: 'defiance in darkness',
       colorPalette: {
@@ -300,7 +300,7 @@ export const epicTimelineImages: Record<string, EpicImageSet> = {
 
   'Establishment of Israel': {
     hero: {
-      url: '/images/events/israel-independence.jpg', // To be generated
+      url: '/images/events/israel-independence.jpg',
       caption: 'After 2000 years - a nation reborn',
       emotionalTone: 'miraculous rebirth, hope fulfilled',
       colorPalette: {
@@ -313,7 +313,7 @@ export const epicTimelineImages: Record<string, EpicImageSet> = {
 
   'Six Day War': {
     hero: {
-      url: '/images/events/western-wall-liberation.jpg', // To be generated
+      url: '/images/events/western-wall-liberation.jpg',
       caption: 'The Wall - touching eternity again',
       emotionalTone: 'return, reunion, fulfillment',
       colorPalette: {
@@ -321,6 +321,88 @@ export const epicTimelineImages: Record<string, EpicImageSet> = {
         accent: ['#0000CD', '#FFFFFF'],
         atmosphere: 'Golden Jerusalem stone, prayers ascending'
       }
+    }
+  },
+
+  // Additional epic moments now with generated images
+  'Exile to Babylon': {
+    hero: {
+      url: '/images/events/babylonian-exile.jpg',
+      caption: 'By the rivers of Babylon, we wept',
+      emotionalTone: 'longing, memory, faithfulness',
+      colorPalette: {
+        primary: ['#708090', '#778899', '#696969'],
+        accent: ['#4682B4', '#DEB887'],
+        atmosphere: 'Melancholic riverside, distant memories'
+      },
+      visualEffects: ['waterReflection', 'gentleMist']
+    }
+  },
+
+  'Return from Exile': {
+    hero: {
+      url: '/images/events/second-temple-building.jpg',
+      caption: 'From ashes, the Temple rises again',
+      emotionalTone: 'renewal, determination, hope',
+      colorPalette: {
+        primary: ['#DEB887', '#F5DEB3', '#FFE4B5'],
+        accent: ['#4169E1', '#32CD32'],
+        atmosphere: 'Dawn of reconstruction'
+      }
+    }
+  },
+
+  'The Maccabean Revolt': {
+    hero: {
+      url: '/images/events/maccabean-revolt.jpg',
+      caption: 'The miracle of lights begins',
+      emotionalTone: 'triumph over tyranny, divine intervention',
+      colorPalette: {
+        primary: ['#FFD700', '#DAA520', '#B8860B'],
+        accent: ['#0000CD', '#DC143C'],
+        atmosphere: 'Sacred flames against winter darkness'
+      },
+      visualEffects: ['candleGlow', 'lightRays']
+    }
+  },
+
+  'Liberation from Camps': {
+    hero: {
+      url: '/images/events/holocaust-liberation.jpg',
+      caption: 'From darkness into light',
+      emotionalTone: 'survival, resilience, new beginning',
+      colorPalette: {
+        primary: ['#696969', '#A9A9A9', '#D3D3D3'],
+        accent: ['#87CEEB', '#FFD700'],
+        atmosphere: 'Breaking dawn after endless night'
+      }
+    }
+  },
+
+  'Ethiopian Aliyah': {
+    hero: {
+      url: '/images/events/operation-solomon.jpg',
+      caption: 'Operation Solomon - coming home',
+      emotionalTone: 'unity, ancient roots fulfilled',
+      colorPalette: {
+        primary: ['#FFFFFF', '#F0F8FF', '#E6E6FA'],
+        accent: ['#FF4500', '#32CD32'],
+        atmosphere: 'African sunrise meets promised land'
+      }
+    }
+  },
+
+  'Modern Innovation': {
+    hero: {
+      url: '/images/events/modern-israel-innovation.jpg',
+      caption: 'Making the desert bloom',
+      emotionalTone: 'transformation, future vision',
+      colorPalette: {
+        primary: ['#32CD32', '#90EE90', '#98FB98'],
+        accent: ['#0000CD', '#FFD700'],
+        atmosphere: 'High-tech meets ancient wisdom'
+      },
+      visualEffects: ['technoPulse', 'growthAnimation']
     }
   }
 };
