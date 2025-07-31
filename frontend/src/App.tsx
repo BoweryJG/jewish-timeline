@@ -46,6 +46,44 @@ function App() {
     } else {
       setViewMode('portrait')
     }
+    
+    // Add/remove desktop body class
+    if (!deviceInfo.isMobile) {
+      document.body.classList.add('desktop-body')
+      // Enable scrolling on root elements for desktop
+      document.documentElement.style.overflow = 'auto'
+      document.body.style.overflow = 'auto'
+      document.body.style.position = 'relative'
+      const rootElement = document.getElementById('root')
+      if (rootElement) {
+        rootElement.style.overflow = 'visible'
+        rootElement.style.height = 'auto'
+      }
+    } else {
+      document.body.classList.remove('desktop-body')
+      // Keep mobile restrictions
+      document.documentElement.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      const rootElement = document.getElementById('root')
+      if (rootElement) {
+        rootElement.style.overflow = 'hidden'
+        rootElement.style.height = '100%'
+      }
+    }
+    
+    // Cleanup function
+    return () => {
+      document.body.classList.remove('desktop-body')
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      const rootElement = document.getElementById('root')
+      if (rootElement) {
+        rootElement.style.overflow = ''
+        rootElement.style.height = ''
+      }
+    }
   }, [isLandscape, isPortrait, deviceInfo.isMobile, deviceInfo.gpuTier])
 
   async function fetchEvents() {
@@ -88,7 +126,7 @@ function App() {
   // For desktop, use the original timeline
   if (!deviceInfo.isMobile) {
     return (
-      <div className="min-h-screen bg-black">
+      <div className="desktop-timeline-view min-h-screen bg-black">
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-royal-gold/20">
           <div className="container mx-auto px-4 py-4">
             <h1 className="text-3xl font-bold text-royal-gold">

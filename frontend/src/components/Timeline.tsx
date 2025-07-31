@@ -31,7 +31,7 @@ export default function Timeline({ events }: TimelineProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 pb-32">
       <div className="relative">
         {/* Timeline spine */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-royal-gold/30"></div>
