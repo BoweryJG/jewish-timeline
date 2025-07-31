@@ -82,15 +82,24 @@ class AudioManager {
   }
 
   // Play category-specific sound
-  playCategory(category: 'win' | 'struggle' | 'attack' | 'population') {
-    const soundMap = {
+  playCategory(category: string) {
+    const soundMap: { [key: string]: string } = {
       win: 'victory',
       struggle: 'struggle',
       attack: 'attack',
-      population: 'population'
+      population: 'population',
+      origins: 'victory',
+      migration: 'population',
+      covenant: 'victory',
+      cultural: 'victory',
+      spiritual: 'victory',
+      golden_age: 'victory',
+      innovation: 'victory',
+      resilience: 'struggle'
     };
     
-    this.play(soundMap[category], {
+    const soundName = soundMap[category] || 'click';
+    this.play(soundName, {
       volume: 0.3,
       rate: 0.9 + Math.random() * 0.2 // Slight pitch variation
     });

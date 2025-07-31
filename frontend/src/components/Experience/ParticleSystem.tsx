@@ -6,7 +6,7 @@ import { particleVertexShader, particleFragmentShader } from '../../shaders/part
 
 interface ParticleSystemProps {
   count?: number;
-  category: 'struggle' | 'attack' | 'win' | 'population';
+  category: string;
   position?: [number, number, number];
   intensity?: number;
 }
@@ -39,12 +39,21 @@ export default function ParticleSystem({
     const colors = new Float32Array(adjustedCount * 3);
     
     // Set color based on category
-    const baseColor = {
+    const categoryColorMap: { [key: string]: THREE.Color } = {
       win: new THREE.Color(0x00ff00),
       attack: new THREE.Color(0xff0000),
       struggle: new THREE.Color(0xff8800),
-      population: new THREE.Color(0xffd700)
-    }[category];
+      population: new THREE.Color(0xffd700),
+      origins: new THREE.Color(0x00ff00),
+      migration: new THREE.Color(0xffd700),
+      covenant: new THREE.Color(0x00ff00),
+      cultural: new THREE.Color(0x00ff00),
+      spiritual: new THREE.Color(0x00ff00),
+      golden_age: new THREE.Color(0x00ff00),
+      innovation: new THREE.Color(0x00ff00),
+      resilience: new THREE.Color(0xff8800)
+    };
+    const baseColor = categoryColorMap[category] || new THREE.Color(0x00ff00);
     
     for (let i = 0; i < adjustedCount; i++) {
       const i3 = i * 3;

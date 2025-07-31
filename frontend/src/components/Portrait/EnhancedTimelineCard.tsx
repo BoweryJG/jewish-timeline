@@ -62,11 +62,24 @@ export default function EnhancedTimelineCard({ event, index }: TimelineCardProps
 
   const getCategoryStyle = (category: string) => {
     switch (category) {
-      case 'win': return 'from-green-600/30 via-green-600/10 to-transparent border-green-600/50 hover:border-green-400';
-      case 'struggle': return 'from-orange-600/30 via-orange-600/10 to-transparent border-orange-600/50 hover:border-orange-400';
-      case 'attack': return 'from-red-600/30 via-red-600/10 to-transparent border-red-600/50 hover:border-red-400';
-      case 'population': return 'from-blue-600/30 via-blue-600/10 to-transparent border-blue-600/50 hover:border-blue-400';
-      default: return 'from-gray-600/30 via-gray-600/10 to-transparent border-gray-600/50 hover:border-gray-400';
+      case 'win':
+      case 'origins':
+      case 'covenant':
+      case 'cultural':
+      case 'spiritual':
+      case 'golden_age':
+      case 'innovation':
+        return 'from-green-600/30 via-green-600/10 to-transparent border-green-600/50 hover:border-green-400';
+      case 'struggle':
+      case 'resilience':
+        return 'from-orange-600/30 via-orange-600/10 to-transparent border-orange-600/50 hover:border-orange-400';
+      case 'attack': 
+        return 'from-red-600/30 via-red-600/10 to-transparent border-red-600/50 hover:border-red-400';
+      case 'population':
+      case 'migration':
+        return 'from-blue-600/30 via-blue-600/10 to-transparent border-blue-600/50 hover:border-blue-400';
+      default: 
+        return 'from-gray-600/30 via-gray-600/10 to-transparent border-gray-600/50 hover:border-gray-400';
     }
   };
 
