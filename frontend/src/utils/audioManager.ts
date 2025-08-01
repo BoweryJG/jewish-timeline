@@ -1,4 +1,5 @@
 import { Howl, Howler } from 'howler';
+import { freeTTS } from '../services/freeHuggingFaceTTS';
 
 interface SoundConfig {
   src: string[];
@@ -181,6 +182,28 @@ class AudioManager {
   // Get enabled state
   isEnabled() {
     return this.enabled;
+  }
+
+  // Play narration for timeline events using free TTS
+  async playNarration(event: { title: string; synopsis: string; start_date: string }) {
+    if (!this.enabled) return;
+    
+    try {
+      const year = new Date(event.start_date).getFullYear();
+      const yearText = year < 0 ? `${Math.abs(year)} BCE` : `${year} CE`;
+      
+      const audioUrl = await freeTTS.generateTimelineNarration({
+        title: event.title,
+        synopsis: event.synopsis,
+        year: yearText,
+      });
+      
+      if (audioUrl) {
+        await freeTTS.playAudio(audioUrl);
+      }
+    } catch (error) {
+      console.error('Failed to play narration:', error);
+    }
   }
 
   // Create Web Audio API synthesized sounds

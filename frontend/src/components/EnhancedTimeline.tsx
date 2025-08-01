@@ -287,6 +287,26 @@ const EventCard = ({ event, index, onClick }: {
             {event.synopsis}
           </p>
 
+          {/* Narration button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => {
+              e.stopPropagation();
+              audioManager.playNarration(event);
+            }}
+            className="mt-3 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 
+                     text-white text-sm font-medium rounded-full 
+                     shadow-md hover:shadow-lg transition-all duration-200
+                     flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+            Play Narration
+          </motion.button>
+
           {/* Decorative elements */}
           <div className="absolute top-2 right-2 w-16 h-16 opacity-10">
             <motion.div
@@ -313,14 +333,24 @@ export default function EnhancedTimeline({ events }: TimelineProps) {
   const timelineItems = useMemo(() => {
     const items: Array<{ type: 'era' | 'event'; data: any; index: number }> = [];
     let eventIndex = 0;
+    
+    // Sort events chronologically (BCE to CE)
+    const sortedEvents = [...events].sort((a, b) => {
+      const yearA = parseInt(a.start_date);
+      const yearB = parseInt(b.start_date);
+      return yearA - yearB;
+    });
+    
+    // Sort eras by start year
+    const sortedEras = [...eras].sort((a, b) => a.startYear - b.startYear);
     let eraIndex = 0;
     
-    events.forEach((event) => {
+    sortedEvents.forEach((event) => {
       const eventYear = parseInt(event.start_date);
       
       // Insert era markers before events that start a new era
-      while (eraIndex < eras.length && eventYear >= eras[eraIndex].startYear) {
-        items.push({ type: 'era', data: eras[eraIndex], index: items.length });
+      while (eraIndex < sortedEras.length && eventYear >= sortedEras[eraIndex].startYear) {
+        items.push({ type: 'era', data: sortedEras[eraIndex], index: items.length });
         eraIndex++;
       }
       
@@ -328,8 +358,8 @@ export default function EnhancedTimeline({ events }: TimelineProps) {
     });
     
     // Add any remaining eras
-    while (eraIndex < eras.length) {
-      items.push({ type: 'era', data: eras[eraIndex], index: items.length });
+    while (eraIndex < sortedEras.length) {
+      items.push({ type: 'era', data: sortedEras[eraIndex], index: items.length });
       eraIndex++;
     }
     
