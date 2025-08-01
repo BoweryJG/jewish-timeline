@@ -6,7 +6,8 @@ import {
   Text, 
   MeshDistortMaterial,
   Environment,
-  Sparkles
+  Sparkles,
+  OrbitControls
 } from '@react-three/drei';
 import { EffectComposer, Bloom, ChromaticAberration } from '@react-three/postprocessing';
 import * as THREE from 'three';
@@ -316,6 +317,17 @@ export default function EnhancedTimeTunnel() {
 
   return (
     <>
+      {/* Orbit controls for desktop */}
+      <OrbitControls 
+        enableZoom={true}
+        enablePan={false}
+        enableRotate={true}
+        zoomSpeed={0.5}
+        rotateSpeed={0.5}
+        minDistance={3}
+        maxDistance={20}
+      />
+      
       {/* Ambient environment */}
       <Environment preset="night" />
       
