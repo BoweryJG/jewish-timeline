@@ -53,11 +53,7 @@ class AudioManager {
         src: ['data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmFgU7k9n1unEiBC13yO/eizEIHWq+8+OWT'],
         volume: 0.25
       },
-      ambient: {
-        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Still placeholder for ambient
-        volume: 0.15,
-        loop: true
-      }
+      // Removed ambient sound temporarily - was causing infinite loop with empty data
     };
 
     // Create Howl instances with error handling
@@ -72,6 +68,10 @@ class AudioManager {
           // Handle load errors
           onloaderror: (_id: number, error: any) => {
             console.warn(`Failed to load sound ${name}:`, error);
+          },
+          // Prevent infinite loop on end
+          onend: function() {
+            // Do nothing - prevent any automatic replay
           }
         });
         this.sounds.set(name, howl);
@@ -80,7 +80,8 @@ class AudioManager {
       }
     });
 
-    this.ambientSound = this.sounds.get('ambient') || null;
+    // Ambient sound disabled temporarily
+    this.ambientSound = null;
   }
 
   // Play a sound by name
