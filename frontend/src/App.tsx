@@ -26,9 +26,9 @@ function App() {
   
   const { isLandscape, isPortrait } = useDeviceOrientation()
   const deviceInfo = useMemo(() => getDeviceInfo(), [])
-  // Temporarily disable intro to debug
-  const [showIntro, setShowIntro] = useState(false)
-  const [introCompleted, setIntroCompleted] = useState(true)
+  // Enable cinematic intro
+  const [showIntro, setShowIntro] = useState(true)
+  const [introCompleted, setIntroCompleted] = useState(false)
   
   console.log('📱 App state:', { isLoading, showIntro, introCompleted });
 
