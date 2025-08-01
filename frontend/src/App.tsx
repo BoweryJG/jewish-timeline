@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { supabase } from './lib/supabase'
 import { useStore } from './store/useStore'
 import { useDeviceOrientation } from './hooks/useDeviceOrientation'
@@ -25,7 +25,7 @@ function App() {
   } = useStore()
   
   const { isLandscape, isPortrait } = useDeviceOrientation()
-  const deviceInfo = getDeviceInfo()
+  const deviceInfo = useMemo(() => getDeviceInfo(), [])
   // Temporarily disable intro to debug
   const [showIntro, setShowIntro] = useState(false)
   const [introCompleted, setIntroCompleted] = useState(true)

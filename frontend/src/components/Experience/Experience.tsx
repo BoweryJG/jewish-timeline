@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 import { Loader } from '@react-three/drei';
 import { useDeviceOrientation } from '../../hooks/useDeviceOrientation';
 import { useStore } from '../../store/useStore';
@@ -10,7 +10,7 @@ import { getDeviceInfo } from '../../utils/deviceDetection';
 export default function Experience() {
   const { isLandscape } = useDeviceOrientation();
   const { viewMode, quality } = useStore();
-  const deviceInfo = getDeviceInfo();
+  const deviceInfo = useMemo(() => getDeviceInfo(), []);
 
   // Determine actual view mode based on orientation and user preference
   const shouldShowLandscape = isLandscape && viewMode === 'landscape' && deviceInfo.isMobile;
