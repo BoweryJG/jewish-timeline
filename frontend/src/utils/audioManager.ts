@@ -17,8 +17,13 @@ class AudioManager {
     // Set global volume
     Howler.volume(this.masterVolume);
     
-    // Initialize sounds
-    this.initializeSounds();
+    // Initialize sounds with error handling
+    try {
+      this.initializeSounds();
+    } catch (error) {
+      console.warn('Audio initialization failed:', error);
+      // Continue without audio - don't break the app
+    }
   }
 
   private initializeSounds() {
@@ -55,9 +60,24 @@ class AudioManager {
       }
     };
 
-    // Create Howl instances
+    // Create Howl instances with error handling
     Object.entries(sounds).forEach(([name, config]) => {
-      this.sounds.set(name, new Howl(config));
+      try {
+        const howl = new Howl({
+          ...config,
+          // Add html5 audio support as fallback
+          html5: true,
+          // Add format hint
+          format: ['wav'],
+          // Handle load errors
+          onloaderror: (_id: number, error: any) => {
+            console.warn(`Failed to load sound ${name}:`, error);
+          }
+        });
+        this.sounds.set(name, howl);
+      } catch (error) {
+        console.warn(`Failed to create sound ${name}:`, error);
+      }
     });
 
     this.ambientSound = this.sounds.get('ambient') || null;
@@ -69,14 +89,18 @@ class AudioManager {
 
     const sound = this.sounds.get(soundName);
     if (sound) {
-      const id = sound.play();
-      
-      if (options?.volume !== undefined) {
-        sound.volume(options.volume, id);
-      }
-      
-      if (options?.rate !== undefined) {
-        sound.rate(options.rate, id);
+      try {
+        const id = sound.play();
+        
+        if (options?.volume !== undefined) {
+          sound.volume(options.volume, id);
+        }
+        
+        if (options?.rate !== undefined) {
+          sound.rate(options.rate, id);
+        }
+      } catch (error) {
+        console.warn(`Failed to play sound ${soundName}:`, error);
       }
     }
   }
