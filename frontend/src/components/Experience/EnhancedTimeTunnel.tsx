@@ -4,7 +4,6 @@ import {
   Stars, 
   Float, 
   Text, 
-  Center,
   MeshDistortMaterial,
   Environment,
   Sparkles

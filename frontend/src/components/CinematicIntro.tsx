@@ -40,7 +40,7 @@ interface CinematicIntroProps {
 export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
   const [phase, setPhase] = useState(0);
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const [skipAvailable, setSkipAvailable] = useState(true); // Changed to true immediately
+  const skipAvailable = true; // Always show skip button
   
   useEffect(() => {
     // Add keyboard listener for escape/space to skip

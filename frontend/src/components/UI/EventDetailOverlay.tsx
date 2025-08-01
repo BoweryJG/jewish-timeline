@@ -49,9 +49,9 @@ export default function EventDetailOverlay() {
           >
             {/* Header with image */}
             <div className="relative h-48 md:h-64 overflow-hidden">
-              {selectedEvent.image_url ? (
+              {selectedEvent.media_urls && selectedEvent.media_urls[0] ? (
                 <img 
-                  src={selectedEvent.image_url} 
+                  src={selectedEvent.media_urls[0]} 
                   alt={selectedEvent.title}
                   className="w-full h-full object-cover"
                 />
