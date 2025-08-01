@@ -703,6 +703,126 @@ const epicTimelineEvents = [
       type: 'contemporary analysis'
     }],
     verified: true
+  },
+  {
+    epoch: 'Contemporary',
+    start_date: '2023-10-07',
+    location: {
+      lat: 31.2518,
+      lng: 34.3985,
+      name: 'Southern Israel',
+      region: 'Gaza Border Communities',
+      country: 'Israel'
+    },
+    category: 'attack',
+    title: 'October 7 Hamas Attack',
+    synopsis: 'The deadliest day for Jews since the Holocaust. Hamas terrorists breach the Gaza border, killing over 1,200 civilians and taking 240 hostages. Israel responds with Operation Swords of Iron.',
+    severity_impact: 10,
+    population_before: 9700000,
+    population_after: 9698800,
+    media_urls: ['/images/events/october-7-attack.jpg'],
+    sources: [{
+      title: 'Times of Israel',
+      url: 'https://www.timesofisrael.com/october-7-2023/',
+      type: 'news'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Contemporary',
+    start_date: '2023-10-08',
+    location: {
+      lat: 31.7683,
+      lng: 35.2137,
+      name: 'Israel',
+      region: 'Nationwide',
+      country: 'Israel'
+    },
+    category: 'struggle',
+    title: 'Operation Swords of Iron',
+    synopsis: 'Israel launches a comprehensive military response to the October 7 attacks, aiming to eliminate Hamas capabilities and secure the release of hostages.',
+    severity_impact: 9,
+    population_before: 9698800,
+    population_after: 9698800,
+    media_urls: ['/images/events/operation-swords-iron.jpg'],
+    sources: [{
+      title: 'IDF Spokesperson',
+      url: 'https://www.idf.il/en/',
+      type: 'military'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Contemporary',
+    start_date: '2023-10-07',
+    location: {
+      lat: 32.0853,
+      lng: 34.7818,
+      name: 'Global',
+      region: 'Worldwide',
+      country: 'Multiple'
+    },
+    category: 'win',
+    title: 'Global Jewish Unity',
+    synopsis: 'In response to October 7, Jewish communities worldwide unite in unprecedented solidarity. Massive rallies, humanitarian aid, and support pour in from every corner of the globe.',
+    severity_impact: 8,
+    population_before: 15300000,
+    population_after: 15300000,
+    media_urls: ['/images/events/global-jewish-unity.jpg'],
+    sources: [{
+      title: 'Jewish Agency',
+      url: 'https://www.jewishagency.org/',
+      type: 'organization'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Contemporary',
+    start_date: '2023-11-24',
+    location: {
+      lat: 31.2518,
+      lng: 34.3985,
+      name: 'Gaza-Israel Border',
+      region: 'Southern Israel',
+      country: 'Israel'
+    },
+    category: 'win',
+    title: 'First Hostage Release',
+    synopsis: 'After 48 days, the first group of hostages is released during a temporary ceasefire. Families reunite as the nation holds its breath for those still captive.',
+    severity_impact: 7,
+    population_before: 9698800,
+    population_after: 9698800,
+    media_urls: ['/images/events/hostage-release.jpg'],
+    sources: [{
+      title: 'Haaretz',
+      url: 'https://www.haaretz.com/',
+      type: 'news'
+    }],
+    verified: true
+  },
+  {
+    epoch: 'Contemporary',
+    start_date: '2024-01-01',
+    location: {
+      lat: 32.0853,
+      lng: 34.7818,
+      name: 'Israel',
+      region: 'Nationwide',
+      country: 'Israel'
+    },
+    category: 'struggle',
+    title: 'Resilience and Rebuilding',
+    synopsis: 'Despite ongoing conflict, Israeli society demonstrates remarkable resilience. Communities rebuild, innovations continue, and the spirit of the nation remains unbroken.',
+    severity_impact: 8,
+    population_before: 9698800,
+    population_after: 9700000,
+    media_urls: ['/images/events/israel-resilience-2024.jpg'],
+    sources: [{
+      title: 'Jerusalem Post',
+      url: 'https://www.jpost.com/',
+      type: 'news'
+    }],
+    verified: true
   }
 ]
 

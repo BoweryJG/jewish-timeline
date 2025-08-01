@@ -1,0 +1,23 @@
+
+Image Generation Instructions: Global Jewish Unity
+=============================================
+
+Filename: global-jewish-unity.jpg
+
+Full Prompt:
+Studio Ghibli style global unity scene: Jewish communities worldwide connected by golden threads of light arcing across Earth. Vigils and rallies from New York to Paris to Tel Aviv to Buenos Aires. Thousands holding candles, Israeli flags, singing together. Star of David constellation visible in night sky. Golden light emanating from each gathering, connecting across continents. Prayers ascending like luminous doves. Deeply moving, warm golden tones, sense of solidarity and strength in unity. Hope overcoming darkness.
+
+Quick Generation Options:
+1. Bing Image Creator (Free): https://www.bing.com/create
+2. Stable Diffusion: https://stablediffusionweb.com/
+3. DALL-E 3: https://www.openai.com/dall-e-3
+4. Midjourney: https://www.midjourney.com/
+
+Style Guidelines:
+- Studio Ghibli aesthetic (watercolor, emotional depth)
+- High resolution (at least 1024x768)
+- Appropriate emotional tone for the event
+- Focus on human stories and emotion
+- Avoid graphic violence, focus on resilience
+
+Generated: 2025-07-31T17:09:58.911Z

@@ -1,0 +1,23 @@
+
+Image Generation Instructions: Operation Swords of Iron
+=============================================
+
+Filename: operation-swords-iron.jpg
+
+Full Prompt:
+Studio Ghibli style protective scene: Night sky over Israeli cities filled with Iron Dome interceptions creating protective umbrella of light trails. Defensive missiles arc gracefully across star-filled sky like protective spirits. Below, cities glow with warm lights, people visible taking shelter. IDF soldiers standing guard with determination. Blue and white colors prominent. Ethereal light effects, trails of light creating shield pattern. Sense of protection, resilience, and defense. Hopeful despite danger, masterful night scene composition.
+
+Quick Generation Options:
+1. Bing Image Creator (Free): https://www.bing.com/create
+2. Stable Diffusion: https://stablediffusionweb.com/
+3. DALL-E 3: https://www.openai.com/dall-e-3
+4. Midjourney: https://www.midjourney.com/
+
+Style Guidelines:
+- Studio Ghibli aesthetic (watercolor, emotional depth)
+- High resolution (at least 1024x768)
+- Appropriate emotional tone for the event
+- Focus on human stories and emotion
+- Avoid graphic violence, focus on resilience
+
+Generated: 2025-07-31T17:09:58.911Z

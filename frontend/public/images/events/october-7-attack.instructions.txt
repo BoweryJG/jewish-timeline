@@ -1,0 +1,23 @@
+
+Image Generation Instructions: October 7 Hamas Attack
+=============================================
+
+Filename: october-7-attack.jpg
+
+Full Prompt:
+Studio Ghibli style dawn scene with deep emotional resonance: Southern Israeli kibbutz at sunrise, peaceful agricultural fields with golden wheat swaying. Children's colorful playground equipment, small homes with gardens, laundry on lines. But ominous storm clouds gathering on horizon, dark shadows creeping across fields. Birds taking flight in alarm. Contrast between idyllic peace and approaching darkness. Soft watercolor style, muted morning colors transitioning to grey. Deeply emotional, foreboding atmosphere. No violence shown, only the last moment of peace.
+
+Quick Generation Options:
+1. Bing Image Creator (Free): https://www.bing.com/create
+2. Stable Diffusion: https://stablediffusionweb.com/
+3. DALL-E 3: https://www.openai.com/dall-e-3
+4. Midjourney: https://www.midjourney.com/
+
+Style Guidelines:
+- Studio Ghibli aesthetic (watercolor, emotional depth)
+- High resolution (at least 1024x768)
+- Appropriate emotional tone for the event
+- Focus on human stories and emotion
+- Avoid graphic violence, focus on resilience
+
+Generated: 2025-07-31T17:09:58.909Z

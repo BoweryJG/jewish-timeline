@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import type { TimelineEvent } from '../../lib/supabase';
 import { VictoryIcon, StruggleIcon, AttackIcon, PopulationIcon } from '../Icons/CategoryIcons';
 import { audioManager } from '../../utils/audioManager';
+import FullScreenImageViewer from '../UI/FullScreenImageViewer';
 
 interface TimelineCardProps {
   event: TimelineEvent;
@@ -53,6 +54,7 @@ const ParticleEffect = ({ category }: { category: string }) => {
 export default function EnhancedTimelineCard({ event, index }: TimelineCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [showImageViewer, setShowImageViewer] = useState(false);
   const isLeft = index % 2 === 0;
   
   const [ref, inView] = useInView({
@@ -215,6 +217,46 @@ export default function EnhancedTimelineCard({ event, index }: TimelineCardProps
                     {event.synopsis}
                   </p>
                   
+                  {/* Event Image */}
+                  {event.media_urls && event.media_urls.length > 0 && (
+                    <motion.div
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.1 }}
+                      className="mb-4"
+                    >
+                      <div
+                        className="relative overflow-hidden rounded-lg cursor-pointer group"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowImageViewer(true);
+                          audioManager.playClick();
+                        }}
+                      >
+                        <img
+                          src={event.media_urls[0]}
+                          alt={event.title}
+                          className="w-full h-48 object-cover transform transition-transform duration-300 
+                                   group-hover:scale-110"
+                          onError={(e) => {
+                            console.error(`Failed to load image: ${event.media_urls[0]}`);
+                            e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pjwvc3ZnPg==';
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent 
+                                      opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute bottom-2 right-2 bg-black/70 rounded-full p-2 
+                                      opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                                  d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                          </svg>
+                        </div>
+                      </div>
+                      <p className="text-xs text-gray-400 mt-2 text-center">Click image to view full screen</p>
+                    </motion.div>
+                  )}
+                  
                   {event.population_before && event.population_after && (
                     <motion.div
                       initial={{ scale: 0.9, opacity: 0 }}
@@ -336,6 +378,17 @@ export default function EnhancedTimelineCard({ event, index }: TimelineCardProps
           />
         </motion.div>
       </motion.div>
+      
+      {/* Full Screen Image Viewer */}
+      {event.media_urls && event.media_urls.length > 0 && (
+        <FullScreenImageViewer
+          isOpen={showImageViewer}
+          imageUrl={event.media_urls[0]}
+          title={event.title}
+          description={event.synopsis}
+          onClose={() => setShowImageViewer(false)}
+        />
+      )}
     </div>
   );
 }

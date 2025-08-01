@@ -1,0 +1,23 @@
+
+Image Generation Instructions: Resilience and Rebuilding
+=============================================
+
+Filename: israel-resilience-2024.jpg
+
+Full Prompt:
+Studio Ghibli style renewal scene: Israeli communities rebuilding with determination and hope. Construction crews working alongside volunteers, new homes rising. Children playing in rebuilt playgrounds, elderly planting new gardens. Memorial walls with photos transforming into living memories. Phoenix imagery subtle in clouds. Flowers blooming in former destruction, olive trees bearing fruit. Sunrise over renewed landscape. Vibrant life colors returning, community spirit visible. Architecture blending memorial with future hope. Deeply optimistic while acknowledging loss.
+
+Quick Generation Options:
+1. Bing Image Creator (Free): https://www.bing.com/create
+2. Stable Diffusion: https://stablediffusionweb.com/
+3. DALL-E 3: https://www.openai.com/dall-e-3
+4. Midjourney: https://www.midjourney.com/
+
+Style Guidelines:
+- Studio Ghibli aesthetic (watercolor, emotional depth)
+- High resolution (at least 1024x768)
+- Appropriate emotional tone for the event
+- Focus on human stories and emotion
+- Avoid graphic violence, focus on resilience
+
+Generated: 2025-07-31T17:09:58.912Z
