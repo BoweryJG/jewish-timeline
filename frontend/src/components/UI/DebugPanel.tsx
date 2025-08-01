@@ -1,196 +1,112 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useStore } from '../../store/useStore';
-import { getDeviceInfo } from '../../utils/deviceDetection';
+import { useState, useEffect } from 'react'
+import { useStore } from '../../store/useStore'
 
-export default function DebugPanel() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [touchEvents, setTouchEvents] = useState<string[]>([]);
-  const [clickEvents, setClickEvents] = useState<string[]>([]);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const deviceInfo = getDeviceInfo();
-  const { events, viewMode, quality } = useStore();
+const DebugPanel = () => {
+  const [isOpen, setIsOpen] = useState(true) // Always open for debugging
+  const [logs, setLogs] = useState<string[]>([])
+  const [errors, setErrors] = useState<string[]>([])
+  const state = useStore()
   
-  // Keyboard shortcut to toggle panel
   useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
-        e.preventDefault();
-        setIsVisible(prev => !prev);
-      }
-    };
+    // Capture console logs
+    const originalLog = console.log
+    const originalError = console.error
     
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, []);
-  
-  // Track touch events
-  useEffect(() => {
-    const handleTouch = (e: TouchEvent) => {
-      const touch = e.touches[0];
-      if (touch) {
-        const event = `${e.type} at (${Math.round(touch.clientX)}, ${Math.round(touch.clientY)})`;
-        setTouchEvents(prev => [...prev.slice(-4), event]);
-      }
-    };
+    console.log = (...args) => {
+      originalLog(...args)
+      setLogs(prev => [...prev, args.join(' ')].slice(-20))
+    }
     
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const event = `Click on ${target.tagName}.${target.className} at (${e.clientX}, ${e.clientY})`;
-      setClickEvents(prev => [...prev.slice(-4), event]);
-    };
+    console.error = (...args) => {
+      originalError(...args)
+      setErrors(prev => [...prev, args.join(' ')].slice(-10))
+    }
     
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
+    // Capture unhandled errors
+    const handleError = (event: ErrorEvent) => {
+      setErrors(prev => [...prev, `ERROR: ${event.message} at ${event.filename}:${event.lineno}`].slice(-10))
+    }
     
-    window.addEventListener('touchstart', handleTouch);
-    window.addEventListener('touchmove', handleTouch);
-    window.addEventListener('touchend', handleTouch);
-    window.addEventListener('click', handleClick, true);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('error', handleError)
     
     return () => {
-      window.removeEventListener('touchstart', handleTouch);
-      window.removeEventListener('touchmove', handleTouch);
-      window.removeEventListener('touchend', handleTouch);
-      window.removeEventListener('click', handleClick, true);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      console.log = originalLog
+      console.error = originalError
+      window.removeEventListener('error', handleError)
+    }
+  }, [])
   
-  // Check z-index layers
-  const getZIndexInfo = () => {
-    const elements = document.querySelectorAll('*');
-    const zIndexMap = new Map<string, { element: string; zIndex: string }[]>();
-    
-    elements.forEach(el => {
-      const style = window.getComputedStyle(el);
-      const zIndex = style.zIndex;
-      if (zIndex !== 'auto' && zIndex !== '0') {
-        if (!zIndexMap.has(zIndex)) {
-          zIndexMap.set(zIndex, []);
-        }
-        const tagName = el.tagName.toLowerCase();
-        const className = el.className || 'no-class';
-        zIndexMap.get(zIndex)?.push({
-          element: `${tagName}.${className}`.substring(0, 50),
-          zIndex
-        });
-      }
-    });
-    
-    return Array.from(zIndexMap.entries())
-      .sort((a, b) => Number(b[0]) - Number(a[0]))
-      .slice(0, 10);
-  };
-  
-  const zIndexInfo = getZIndexInfo();
-  
+  if (!isOpen) {
+    return (
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg z-50 text-lg font-bold"
+      >
+        Debug ({errors.length} errors)
+      </button>
+    )
+  }
+
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, x: 300 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 300 }}
-          className="fixed right-0 top-0 h-full w-80 bg-black/90 backdrop-blur-md border-l border-royal-gold/30 
-                     z-[9999] overflow-y-auto p-4 text-white text-xs font-mono"
-        >
-          <div className="space-y-4">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-bold text-royal-gold">Debug Panel</h3>
-              <button
-                onClick={() => setIsVisible(false)}
-                className="text-gray-400 hover:text-white"
-              >
-                ✕
-              </button>
-            </div>
-            
-            {/* Device Info */}
-            <div className="bg-gray-900/50 rounded p-3">
-              <h4 className="text-royal-gold mb-2">Device Info</h4>
-              <div className="space-y-1">
-                <p>Mobile: {deviceInfo.isMobile ? 'Yes' : 'No'}</p>
-                <p>iOS: {deviceInfo.isIOS ? 'Yes' : 'No'}</p>
-                <p>Android: {deviceInfo.isAndroid ? 'Yes' : 'No'}</p>
-                <p>Touch: {deviceInfo.supportsTouch ? 'Yes' : 'No'}</p>
-                <p>GPU: {deviceInfo.gpuTier}</p>
-                <p>Screen: {window.innerWidth} × {window.innerHeight}</p>
-                <p>Pixel Ratio: {window.devicePixelRatio}</p>
-              </div>
-            </div>
-            
-            {/* App State */}
-            <div className="bg-gray-900/50 rounded p-3">
-              <h4 className="text-royal-gold mb-2">App State</h4>
-              <div className="space-y-1">
-                <p>View Mode: {viewMode}</p>
-                <p>Quality: {quality}</p>
-                <p>Events Loaded: {events.length}</p>
-                <p>Scroll: {scrollPosition}px</p>
-              </div>
-            </div>
-            
-            {/* Touch Events */}
-            <div className="bg-gray-900/50 rounded p-3">
-              <h4 className="text-royal-gold mb-2">Touch Events</h4>
-              <div className="space-y-1">
-                {touchEvents.length === 0 ? (
-                  <p className="text-gray-500">No touch events yet</p>
-                ) : (
-                  touchEvents.map((event, i) => (
-                    <p key={i} className="text-gray-300">{event}</p>
-                  ))
-                )}
-              </div>
-            </div>
-            
-            {/* Click Events */}
-            <div className="bg-gray-900/50 rounded p-3">
-              <h4 className="text-royal-gold mb-2">Click Events</h4>
-              <div className="space-y-1">
-                {clickEvents.length === 0 ? (
-                  <p className="text-gray-500">No click events yet</p>
-                ) : (
-                  clickEvents.map((event, i) => (
-                    <p key={i} className="text-gray-300 truncate">{event}</p>
-                  ))
-                )}
-              </div>
-            </div>
-            
-            {/* Z-Index Layers */}
-            <div className="bg-gray-900/50 rounded p-3">
-              <h4 className="text-royal-gold mb-2">Z-Index Layers</h4>
-              <div className="space-y-1">
-                {zIndexInfo.map(([zIndex, elements], i) => (
-                  <div key={i}>
-                    <p className="text-yellow-400">z-{zIndex}:</p>
-                    {elements.slice(0, 3).map((el, j) => (
-                      <p key={j} className="text-gray-300 pl-2 truncate">
-                        {el.element}
-                      </p>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Performance */}
-            <div className="bg-gray-900/50 rounded p-3">
-              <h4 className="text-royal-gold mb-2">Performance</h4>
-              <div className="space-y-1">
-                <p>FPS: {Math.round(1000 / 16)} (estimated)</p>
-                <p>Memory: {(performance as any).memory?.usedJSHeapSize 
-                  ? Math.round((performance as any).memory.usedJSHeapSize / 1048576) + 'MB'
-                  : 'N/A'}</p>
-              </div>
+    <div className="fixed bottom-0 left-0 right-0 bg-black/95 text-white p-4 z-50 max-h-[50vh] overflow-auto border-t-4 border-red-500">
+      <button
+        onClick={() => setIsOpen(false)}
+        className="absolute top-2 right-2 text-white bg-red-500 px-3 py-1 rounded text-xl"
+      >
+        ×
+      </button>
+      
+      <div className="mb-4">
+        <h3 className="text-red-500 font-bold text-xl mb-2">🚨 Debug Panel</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 className="text-yellow-500 font-bold mb-1">App State:</h4>
+            <div className="bg-black/50 p-2 rounded text-xs">
+              <p>Events: {state.events.length}</p>
+              <p>Loading: {state.isLoading ? 'YES' : 'NO'}</p>
+              <p>View Mode: {state.viewMode}</p>
+              <p>Quality: {state.quality}</p>
+              <p>Current Event: {state.currentEventIndex}</p>
             </div>
           </div>
-        </motion.div>
+          
+          <div>
+            <h4 className="text-yellow-500 font-bold mb-1">Device:</h4>
+            <div className="bg-black/50 p-2 rounded text-xs">
+              <p>User Agent: {navigator.userAgent.slice(0, 50)}...</p>
+              <p>Screen: {window.innerWidth}x{window.innerHeight}</p>
+              <p>Touch: {('ontouchstart' in window) ? 'YES' : 'NO'}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {errors.length > 0 && (
+        <div className="mb-4">
+          <h4 className="text-red-500 font-bold mb-1">❌ Errors ({errors.length}):</h4>
+          <div className="bg-red-900/30 p-2 rounded text-xs max-h-32 overflow-y-auto">
+            {errors.map((error, i) => (
+              <div key={i} className="mb-1 text-red-300">{error}</div>
+            ))}
+          </div>
+        </div>
       )}
-    </AnimatePresence>
-  );
+      
+      <div>
+        <h4 className="text-green-500 font-bold mb-1">📋 Console Logs:</h4>
+        <div className="bg-black/50 p-2 rounded text-xs max-h-32 overflow-y-auto">
+          {logs.length === 0 ? (
+            <p className="text-gray-500">No logs yet...</p>
+          ) : (
+            logs.map((log, i) => (
+              <div key={i} className="mb-1 text-gray-300">{log}</div>
+            ))
+          )}
+        </div>
+      </div>
+    </div>
+  )
 }
+
+export default DebugPanel

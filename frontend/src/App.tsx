@@ -132,6 +132,7 @@ function App() {
   }
 
   if (isLoading) {
+    console.log('🔄 Still loading, showing EpicLoader');
     return <EpicLoader />
   }
 
@@ -163,6 +164,7 @@ function App() {
 
   // For desktop, use the original timeline
   if (!deviceInfo.isMobile) {
+    console.log('🖥️ Rendering desktop view with', events.length, 'events');
     return (
       <div className="desktop-timeline-view min-h-screen bg-black">
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-royal-gold/20">
@@ -181,7 +183,13 @@ function App() {
         </header>
         
         <main className="pt-24">
-          <EnhancedTimeline events={events} />
+          {events.length === 0 ? (
+            <div className="text-white text-center p-8">
+              <p>No events loaded. Checking database connection...</p>
+            </div>
+          ) : (
+            <EnhancedTimeline events={events} />
+          )}
         </main>
         <DebugPanel />
       </div>
