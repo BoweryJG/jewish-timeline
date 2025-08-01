@@ -239,7 +239,7 @@ export default function EnhancedTimelineCard({ event, index }: TimelineCardProps
                           className="w-full h-48 object-cover transform transition-transform duration-300 
                                    group-hover:scale-110"
                           onError={(e) => {
-                            console.error(`Failed to load image: ${event.media_urls[0]}`);
+                            console.error(`Failed to load image: ${event.media_urls?.[0]}`);
                             e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+SW1hZ2UgTm90IEZvdW5kPC90ZXh0Pjwvc3ZnPg==';
                           }}
                         />
