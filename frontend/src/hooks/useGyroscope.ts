@@ -72,17 +72,16 @@ export const useGyroscope = (enabled: boolean = true) => {
 
     if (!checkSupport() || !enabled) return;
 
-    // Auto-request permission
-    requestPermission().then(granted => {
-      if (granted) {
-        window.addEventListener('deviceorientation', handleOrientation);
-      }
-    });
+    // Don't auto-request permission - wait for user gesture
+    // Check if permission was already granted
+    if (data.permission === 'granted') {
+      window.addEventListener('deviceorientation', handleOrientation);
+    }
 
     return () => {
       window.removeEventListener('deviceorientation', handleOrientation);
     };
-  }, [enabled, handleOrientation, requestPermission]);
+  }, [enabled, handleOrientation, data.permission]);
 
   return {
     ...data,

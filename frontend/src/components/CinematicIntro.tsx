@@ -166,7 +166,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
             animate={{ opacity: 0.7 }}
             whileHover={{ opacity: 1 }}
             onClick={handleSkip}
-            className="absolute top-8 right-8 z-50 text-gray-400 text-sm px-4 py-2 
+            className="absolute top-4 right-4 md:top-8 md:right-8 z-50 text-gray-400 text-xs md:text-sm px-3 py-1.5 md:px-4 md:py-2 
                      border border-gray-600 rounded hover:border-gray-400 transition-colors"
           >
             Skip Intro
@@ -219,7 +219,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   duration: 4,
                   repeat: Infinity
                 }}
-                className="absolute w-96 h-96 bg-gradient-radial from-yellow-400/20 to-transparent 
+                className="absolute w-48 h-48 md:w-96 md:h-96 bg-gradient-radial from-yellow-400/20 to-transparent 
                          rounded-full blur-3xl"
               />
             </motion.div>
@@ -233,7 +233,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute inset-0 flex flex-col items-center justify-center px-8"
+              className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-8"
             >
               <motion.h1
                 key={quoteIndex}
@@ -241,7 +241,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.1 }}
                 transition={{ duration: 0.8 }}
-                className="text-6xl md:text-8xl font-bold text-royal-gold mb-4 text-center"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-royal-gold mb-2 md:mb-4 text-center"
                 style={{ fontFamily: 'serif' }}
               >
                 {inspirationalQuotes[quoteIndex].hebrew}
@@ -252,7 +252,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-2xl text-gray-400 mb-2 italic"
+                className="text-lg md:text-2xl text-gray-400 mb-1 md:mb-2 italic"
               >
                 {inspirationalQuotes[quoteIndex].transliteration}
               </motion.p>
@@ -262,7 +262,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-3xl text-white"
+                className="text-xl md:text-3xl text-white"
               >
                 {inspirationalQuotes[quoteIndex].english}
               </motion.p>
@@ -281,7 +281,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
               className="absolute inset-0 flex items-center justify-center"
             >
               {/* Flag background with image fallback */}
-              <div className="relative w-full max-w-2xl aspect-[3/2]">
+              <div className="relative w-full max-w-xs md:max-w-2xl aspect-[3/2] mx-4">
                 <motion.div
                   animate={{
                     boxShadow: [
@@ -299,7 +299,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   
                   {/* Star of David */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <svg className="w-32 h-32" viewBox="0 0 100 100">
+                    <svg className="w-20 h-20 md:w-32 md:h-32" viewBox="0 0 100 100">
                       <path
                         d="M50 10 L61.5 35 L88.5 35 L66.5 52 L78 77 L50 60 L22 77 L33.5 52 L11.5 35 L38.5 35 Z"
                         fill="none"
@@ -329,7 +329,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 flex items-center justify-center px-8"
+              className="absolute inset-0 flex items-center justify-center px-4 md:px-8"
             >
               {/* Background montage of historical images */}
               <div className="absolute inset-0 opacity-20">
@@ -359,12 +359,12 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
               </div>
               
               {/* Introduction text */}
-              <div className="relative z-10 max-w-4xl text-center">
+              <div className="relative z-10 max-w-full md:max-w-4xl text-center px-4">
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-5xl md:text-6xl font-bold text-royal-gold mb-6"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-royal-gold mb-3 md:mb-6"
                 >
                   The Jewish Timeline
                 </motion.h2>
@@ -372,7 +372,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 }}
-                  className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-4 md:mb-8 leading-relaxed"
                 >
                   Journey through 4,000 years of history, from Abraham's covenant 
                   to the modern State of Israel. Witness the triumphs and trials, 
@@ -383,7 +383,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 2 }}
-                  className="text-lg text-gray-400"
+                  className="text-sm md:text-lg text-gray-400"
                 >
                   Swipe through time to explore each pivotal moment...
                 </motion.p>
@@ -407,7 +407,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                 }}
                 transition={{ duration: 2, delay: 0.5 }}
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                         w-32 h-32 bg-royal-gold rounded-full"
+                         w-16 h-16 md:w-32 md:h-32 bg-royal-gold rounded-full"
               />
             </motion.div>
           )}
