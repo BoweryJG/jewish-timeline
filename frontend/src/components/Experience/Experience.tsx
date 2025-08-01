@@ -5,6 +5,7 @@ import { useDeviceOrientation } from '../../hooks/useDeviceOrientation';
 import { useStore } from '../../store/useStore';
 import EnhancedTimeTunnel from './EnhancedTimeTunnel';
 import EnhancedPortraitTimeline from '../Portrait/EnhancedPortraitTimeline';
+import EventDetailOverlay from '../UI/EventDetailOverlay';
 import { getDeviceInfo } from '../../utils/deviceDetection';
 
 export default function Experience() {
@@ -44,6 +45,7 @@ export default function Experience() {
         </Suspense>
       </Canvas>
       <Loader />
+      <EventDetailOverlay />
     </>
   );
 }

@@ -33,11 +33,15 @@ function App() {
   console.log('📱 App state:', { isLoading, showIntro, introCompleted });
 
   useEffect(() => {
-    // Check if intro should be skipped
-    const skipIntro = localStorage.getItem('skipIntro') === 'true';
-    if (skipIntro) {
+    // Check if intro should be skipped via URL parameter or localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    const skipIntroParam = urlParams.get('skipIntro') === 'true';
+    const skipIntroStorage = localStorage.getItem('skipIntro') === 'true';
+    
+    if (skipIntroParam || skipIntroStorage) {
       setShowIntro(false);
       setIntroCompleted(true);
+      console.log('Skipping intro animation');
     }
     
     fetchEvents()

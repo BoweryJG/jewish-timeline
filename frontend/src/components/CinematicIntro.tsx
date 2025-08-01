@@ -40,9 +40,20 @@ interface CinematicIntroProps {
 export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
   const [phase, setPhase] = useState(0);
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const [skipAvailable, setSkipAvailable] = useState(false);
+  const [skipAvailable, setSkipAvailable] = useState(true); // Changed to true immediately
   
   useEffect(() => {
+    // Add keyboard listener for escape/space to skip
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        localStorage.setItem('skipIntro', 'true');
+        onComplete();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyPress);
+    
     // Add error handling
     try {
       // Preload critical images
@@ -52,8 +63,8 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
         img.onerror = () => console.warn('Failed to load image:', src);
       });
     
-    // Show skip button after 2 seconds
-    const skipTimer = setTimeout(() => setSkipAvailable(true), 2000);
+    // Skip timer no longer needed since we show skip immediately
+    // const skipTimer = setTimeout(() => setSkipAvailable(true), 2000);
     
     // Phase progression with narration
     const phaseTimers = [
@@ -135,7 +146,8 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
     }, 4500); // Increased interval to allow speech to complete
     
     return () => {
-      clearTimeout(skipTimer);
+      window.removeEventListener('keydown', handleKeyPress);
+      // clearTimeout(skipTimer); // No longer needed
       phaseTimers.forEach(timer => clearTimeout(timer));
       clearInterval(quoteTimer);
       ttsService.stop(); // Stop any ongoing speech

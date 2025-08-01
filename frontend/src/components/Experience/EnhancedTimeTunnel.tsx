@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { 
   Stars, 
   Float, 
-  Text3D, 
+  Text, 
   Center,
   MeshDistortMaterial,
   Environment,
@@ -19,7 +19,8 @@ import { audioManager } from '../../utils/audioManager';
 const EventCrystal = ({ event, position, index }: any) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const { selectedEvent, setSelectedEvent } = useStore();
+  const isSelected = selectedEvent?.id === event.id;
   
   const color = useMemo(() => {
     switch (event.category) {
@@ -38,7 +39,11 @@ const EventCrystal = ({ event, position, index }: any) => {
       
       // Pulse effect
       const scale = 1 + Math.sin(state.clock.elapsedTime * 2 + index) * 0.1;
-      meshRef.current.scale.setScalar(hovered ? scale * 1.5 : scale);
+      if (isSelected) {
+        meshRef.current.scale.setScalar(scale * 2);
+      } else {
+        meshRef.current.scale.setScalar(hovered ? scale * 1.5 : scale);
+      }
     }
   });
 
@@ -59,7 +64,7 @@ const EventCrystal = ({ event, position, index }: any) => {
           }}
           onPointerOut={() => setHovered(false)}
           onClick={() => {
-            setClicked(!clicked);
+            setSelectedEvent(event);
             audioManager.playCategory(event.category);
           }}
         >
@@ -67,13 +72,13 @@ const EventCrystal = ({ event, position, index }: any) => {
           <MeshDistortMaterial
             color={color}
             emissive={color}
-            emissiveIntensity={hovered ? 2 : 0.5}
+            emissiveIntensity={isSelected ? 3 : hovered ? 2 : 0.5}
             roughness={0.1}
             metalness={0.8}
             distort={0.4}
             speed={2}
             transparent
-            opacity={0.9}
+            opacity={isSelected ? 1 : 0.9}
           />
         </mesh>
         
@@ -87,28 +92,31 @@ const EventCrystal = ({ event, position, index }: any) => {
           opacity={0.8}
         />
         
-        {/* Event title on hover */}
-        {hovered && (
-          <Center position={[0, 2, 0]}>
-            <Text3D
-              font="/fonts/helvetiker_regular.typeface.json"
-              size={0.3}
-              height={0.1}
-              curveSegments={12}
-              bevelEnabled
-              bevelThickness={0.02}
-              bevelSize={0.02}
-              bevelSegments={5}
-            >
-              {event.title}
-              <meshStandardMaterial
-                color={color}
-                emissive={color}
-                emissiveIntensity={0.5}
-              />
-            </Text3D>
-          </Center>
-        )}
+        {/* Event title - always visible */}
+        <Text
+          position={[0, 1.5, 0]}
+          fontSize={isSelected ? 0.4 : 0.25}
+          color={isSelected ? '#ffffff' : color}
+          anchorX="center"
+          anchorY="middle"
+          outlineWidth={0.02}
+          outlineColor="#000000"
+        >
+          {event.title.length > 20 ? event.title.substring(0, 20) + '...' : event.title}
+        </Text>
+        
+        {/* Event year */}
+        <Text
+          position={[0, -1.5, 0]}
+          fontSize={0.2}
+          color="#ffffff"
+          anchorX="center"
+          anchorY="middle"
+          outlineWidth={0.01}
+          outlineColor="#000000"
+        >
+          {new Date(event.start_date).getFullYear().toString()}
+        </Text>
       </group>
     </Float>
   );
