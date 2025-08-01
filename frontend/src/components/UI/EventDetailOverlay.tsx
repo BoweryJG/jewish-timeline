@@ -1,10 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Calendar, MapPin, Users } from 'lucide-react';
+import { X, Calendar, MapPin, Users, Maximize2 } from 'lucide-react';
+import { useState } from 'react';
 import { useStore } from '../../store/useStore';
 import { audioManager } from '../../utils/audioManager';
+import FullScreenImageViewer from './FullScreenImageViewer';
 
 export default function EventDetailOverlay() {
   const { selectedEvent, setSelectedEvent } = useStore();
+  const [fullscreenImage, setFullscreenImage] = useState<{ url: string; title: string } | null>(null);
 
   if (!selectedEvent) return null;
 
@@ -24,15 +27,16 @@ export default function EventDetailOverlay() {
   };
 
   return (
-    <AnimatePresence>
-      {selectedEvent && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-end md:items-center justify-center"
-          onClick={handleClose}
-        >
+    <>
+      <AnimatePresence>
+        {selectedEvent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end md:items-center justify-center"
+            onClick={handleClose}
+          >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
           
@@ -48,13 +52,31 @@ export default function EventDetailOverlay() {
                      max-h-[85vh] overflow-hidden shadow-2xl"
           >
             {/* Header with image */}
-            <div className="relative h-48 md:h-64 overflow-hidden">
+            <div className="relative h-48 md:h-64 overflow-hidden group">
               {selectedEvent.media_urls && selectedEvent.media_urls[0] ? (
-                <img 
-                  src={selectedEvent.media_urls[0]} 
-                  alt={selectedEvent.title}
-                  className="w-full h-full object-cover"
-                />
+                <>
+                  <img 
+                    src={selectedEvent.media_urls[0]} 
+                    alt={selectedEvent.title}
+                    className="w-full h-full object-cover cursor-pointer"
+                    onClick={() => setFullscreenImage({ 
+                      url: selectedEvent.media_urls![0], 
+                      title: selectedEvent.title 
+                    })}
+                  />
+                  {/* Fullscreen button overlay */}
+                  <button
+                    onClick={() => setFullscreenImage({ 
+                      url: selectedEvent.media_urls![0], 
+                      title: selectedEvent.title 
+                    })}
+                    className="absolute top-4 left-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full 
+                             flex items-center justify-center text-white opacity-0 group-hover:opacity-100 
+                             transition-opacity"
+                  >
+                    <Maximize2 size={18} />
+                  </button>
+                </>
               ) : (
                 <div className="w-full h-full bg-gradient-to-br from-royal-gold/20 to-royal-gold/5" />
               )}
@@ -160,5 +182,17 @@ export default function EventDetailOverlay() {
         </motion.div>
       )}
     </AnimatePresence>
+    
+    {/* Fullscreen Image Viewer */}
+    {fullscreenImage && (
+      <FullScreenImageViewer
+        isOpen={!!fullscreenImage}
+        imageUrl={fullscreenImage.url}
+        title={fullscreenImage.title}
+        description={selectedEvent?.synopsis}
+        onClose={() => setFullscreenImage(null)}
+      />
+    )}
+    </>
   );
 }

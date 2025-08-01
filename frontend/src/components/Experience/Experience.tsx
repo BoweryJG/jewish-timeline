@@ -6,6 +6,7 @@ import { useStore } from '../../store/useStore';
 import EnhancedTimeTunnel from './EnhancedTimeTunnel';
 import EnhancedPortraitTimeline from '../Portrait/EnhancedPortraitTimeline';
 import EventDetailOverlay from '../UI/EventDetailOverlay';
+import MobileNavbar from '../UI/MobileNavbar';
 import { getDeviceInfo } from '../../utils/deviceDetection';
 
 export default function Experience() {
@@ -34,6 +35,7 @@ export default function Experience() {
 
   return (
     <>
+      <MobileNavbar />
       <Canvas
         camera={{ position: [0, 0, 5], fov: 75 }}
         dpr={getPixelRatio()}

@@ -12,8 +12,7 @@ interface MobileNavbarProps {
 export default function MobileNavbar({ scrollProgress = 0, onMenuClick }: MobileNavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [audioEnabled, setAudioEnabled] = useState(true);
-  const { events } = useStore();
+  const { events, audioEnabled, setAudioEnabled } = useStore();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +26,10 @@ export default function MobileNavbar({ scrollProgress = 0, onMenuClick }: Mobile
   const toggleAudio = () => {
     const newState = audioManager.toggle();
     setAudioEnabled(newState);
-    audioManager.playClick();
+    // Don't play click sound when toggling audio off
+    if (newState) {
+      audioManager.playClick();
+    }
   };
   
   const toggleMenu = () => {
