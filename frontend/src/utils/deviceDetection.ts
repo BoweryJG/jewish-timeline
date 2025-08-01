@@ -1,7 +1,20 @@
-// Cache device info to prevent recreating WebGL context
-let cachedDeviceInfo: ReturnType<typeof getDeviceInfo> | null = null;
+// Define the device info type
+interface DeviceInfo {
+  isMobile: boolean;
+  isIOS: boolean;
+  isAndroid: boolean;
+  screenWidth: number;
+  screenHeight: number;
+  pixelRatio: number;
+  gpuTier: string;
+  supportsGyroscope: boolean;
+  supportsTouch: boolean;
+}
 
-export const getDeviceInfo = () => {
+// Cache device info to prevent recreating WebGL context
+let cachedDeviceInfo: DeviceInfo | null = null;
+
+export const getDeviceInfo = (): DeviceInfo => {
   // Return cached info if available
   if (cachedDeviceInfo) {
     return cachedDeviceInfo;
