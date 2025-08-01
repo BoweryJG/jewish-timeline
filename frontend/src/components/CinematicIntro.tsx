@@ -43,11 +43,14 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
   const [skipAvailable, setSkipAvailable] = useState(false);
   
   useEffect(() => {
-    // Preload critical images
-    keyImages.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
+    // Add error handling
+    try {
+      // Preload critical images
+      keyImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+        img.onerror = () => console.warn('Failed to load image:', src);
+      });
     
     // Show skip button after 2 seconds
     const skipTimer = setTimeout(() => setSkipAvailable(true), 2000);
@@ -137,6 +140,10 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
       clearInterval(quoteTimer);
       ttsService.stop(); // Stop any ongoing speech
     };
+    } catch (error) {
+      console.error('Error in CinematicIntro:', error);
+      onComplete(); // Skip intro on error
+    }
   }, [phase, quoteIndex, onComplete]);
   
   const handleSkip = () => {

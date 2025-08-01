@@ -12,6 +12,8 @@ import DebugPanel from './components/UI/DebugPanel'
 // import { mockEvents } from './data/mockEvents'
 
 function App() {
+  console.log('🚀 App component loading...');
+  
   const { 
     events, 
     setEvents, 
@@ -24,8 +26,11 @@ function App() {
   
   const { isLandscape, isPortrait } = useDeviceOrientation()
   const deviceInfo = getDeviceInfo()
-  const [showIntro, setShowIntro] = useState(true)
-  const [introCompleted, setIntroCompleted] = useState(false)
+  // Temporarily disable intro to debug
+  const [showIntro, setShowIntro] = useState(false)
+  const [introCompleted, setIntroCompleted] = useState(true)
+  
+  console.log('📱 App state:', { isLoading, showIntro, introCompleted });
 
   useEffect(() => {
     // Check if intro should be skipped
@@ -132,17 +137,24 @@ function App() {
 
   // Show intro if not completed
   if (showIntro && !introCompleted) {
-    return (
-      <>
-        <CinematicIntro 
-          onComplete={() => {
-            setShowIntro(false);
-            setIntroCompleted(true);
-          }} 
-        />
-        <DebugPanel />
-      </>
-    );
+    try {
+      return (
+        <>
+          <CinematicIntro 
+            onComplete={() => {
+              setShowIntro(false);
+              setIntroCompleted(true);
+            }} 
+          />
+          <DebugPanel />
+        </>
+      );
+    } catch (error) {
+      console.error('Error in intro:', error);
+      // Skip intro on error
+      setShowIntro(false);
+      setIntroCompleted(true);
+    }
   }
 
   console.log('🔍 Device info:', deviceInfo);
