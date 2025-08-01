@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from './lib/supabase'
 import { useStore } from './store/useStore'
 import { useDeviceOrientation } from './hooks/useDeviceOrientation'
@@ -7,6 +7,8 @@ import Experience from './components/Experience/Experience'
 import OrientationPrompt from './components/UI/OrientationPrompt'
 import EnhancedTimeline from './components/EnhancedTimeline'
 import EpicLoader from './components/UI/EpicLoader'
+import CinematicIntro from './components/CinematicIntro'
+import DebugPanel from './components/UI/DebugPanel'
 // import { mockEvents } from './data/mockEvents'
 
 function App() {
@@ -22,8 +24,17 @@ function App() {
   
   const { isLandscape, isPortrait } = useDeviceOrientation()
   const deviceInfo = getDeviceInfo()
+  const [showIntro, setShowIntro] = useState(true)
+  const [introCompleted, setIntroCompleted] = useState(false)
 
   useEffect(() => {
+    // Check if intro should be skipped
+    const skipIntro = localStorage.getItem('skipIntro') === 'true';
+    if (skipIntro) {
+      setShowIntro(false);
+      setIntroCompleted(true);
+    }
+    
     fetchEvents()
     
     // Set quality based on device
@@ -119,6 +130,21 @@ function App() {
     return <EpicLoader />
   }
 
+  // Show intro if not completed
+  if (showIntro && !introCompleted) {
+    return (
+      <>
+        <CinematicIntro 
+          onComplete={() => {
+            setShowIntro(false);
+            setIntroCompleted(true);
+          }} 
+        />
+        <DebugPanel />
+      </>
+    );
+  }
+
   console.log('🔍 Device info:', deviceInfo);
   console.log('📱 Is mobile?', deviceInfo.isMobile);
   console.log('🏞️ Is landscape?', isLandscape);
@@ -145,6 +171,7 @@ function App() {
         <main className="pt-24">
           <EnhancedTimeline events={events} />
         </main>
+        <DebugPanel />
       </div>
     )
   }
@@ -154,6 +181,7 @@ function App() {
     <div className="relative w-full h-screen overflow-hidden bg-black">
       <OrientationPrompt />
       <Experience />
+      <DebugPanel />
     </div>
   )
 }

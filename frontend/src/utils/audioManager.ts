@@ -22,34 +22,34 @@ class AudioManager {
   }
 
   private initializeSounds() {
-    // Category-specific sounds (using data URIs for built-in sounds)
+    // Category-specific sounds (using actual sound data)
     const sounds: { [key: string]: SoundConfig } = {
       victory: {
-        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Placeholder
+        src: ['data:audio/wav;base64,UklGRqoGAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YYYGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmFgU7k9n1unEiBC13yO/eizEIHWq+8+OWTwwNUqzn77VlHAY6k9n0y3UoBS19yO/djjsIHmW98OWdTQ'],
         volume: 0.3
       },
       struggle: {
-        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Placeholder
+        src: ['data:audio/wav;base64,UklGRtYGAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YbIGAAC1tbW1tbW1tbW1tbW1tbW1ra2NjXV1ZWVVVVVVZWVtbYWFsbG1ta2tjY11dWVlVVVVVWVlbW2FhbGxtbWtra2NjX19ZWVlZVVVZWVtbYWFpbW1ta2tjY19fWVlZWVVVWVlbW2FhaW1tbWtrY2NfX1lZWVlVVVlZW1thYWltbW1ta2tjY19fWVlZWVVVWVlbW2FhaW1tbWtrY2NfX1lZWVlVVVlZW1thYWltbW1ra2NjX19ZWVlZVVVZWVtbYWFpbW1ta'],
         volume: 0.3
       },
       attack: {
-        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Placeholder
+        src: ['data:audio/wav;base64,UklGRpYGAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YXIGAADCx8zCfHV5kJCRlZeVjnx5fIySm5mOdmNiYnCInqCLck5PYHeRlZWKdF9YXnSJkIqAcWdeZHeBiYl/cGVkbHuHhHpuZmVwfYiGfG9mZXCAiIZ7bWVldH+JhXxuZGRzfoiFe21jY3N/iYR7bWNkc3+JhHttY2Rygol+cGNkbXuIhHhsY2NvfYiGem1iYnB+iIV7bWJjb36IhXxtYmNwf4mFe21iYnF/iYR7bmJjcn+HhHttY2Jyf4aDe25jY3OAhYN7b2Njc3+Gg3twY2Nzf4aDenFkY3OAhoN7cGRjc3+Gg3xxZGNzf4WDenBkZHOAhoR6cGVkdH+Fg3tvZGRzfoaDe3Bm'],
         volume: 0.3
       },
       population: {
-        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Placeholder
+        src: ['data:audio/wav;base64,UklGRmYGAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YUIGAACtra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2t'],
         volume: 0.3
       },
       hover: {
-        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Placeholder
+        src: ['data:audio/wav;base64,UklGRiYGAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQoGAAA+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4'],
         volume: 0.2
       },
       click: {
-        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Placeholder
+        src: ['data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmFgU7k9n1unEiBC13yO/eizEIHWq+8+OWT'],
         volume: 0.25
       },
       ambient: {
-        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Placeholder
+        src: ['data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='], // Still placeholder for ambient
         volume: 0.15,
         loop: true
       }

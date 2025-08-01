@@ -223,7 +223,7 @@ export default function EnhancedTimelineCard({ event, index }: TimelineCardProps
                       initial={{ scale: 0.9, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 0.1 }}
-                      className="mb-4"
+                      className="mb-4 relative z-10"
                     >
                       <div
                         className="relative overflow-hidden rounded-lg cursor-pointer group"
