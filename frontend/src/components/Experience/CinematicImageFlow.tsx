@@ -23,7 +23,6 @@ export default function CinematicImageFlow() {
   const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
 
   const currentEvent = events[currentIndex];
-  const prevEvent = events[(currentIndex - 1 + events.length) % events.length];
   const nextEvent = events[(currentIndex + 1) % events.length];
 
   // Auto-advance with pause on hover

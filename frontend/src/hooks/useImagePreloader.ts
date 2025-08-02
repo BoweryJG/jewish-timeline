@@ -3,11 +3,10 @@ import { useEffect, useState, useRef } from 'react';
 interface ImagePreloaderOptions {
   fadeDuration?: number;
   preloadNext?: number;
-  onLoadComplete?: () => void;
 }
 
 export function useImagePreloader(imageUrls: string[], options: ImagePreloaderOptions = {}) {
-  const { fadeDuration = 1000, preloadNext = 2, onLoadComplete } = options;
+  const { fadeDuration = 1000, preloadNext = 2 } = options;
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const [currentImageLoaded, setCurrentImageLoaded] = useState(false);
   const imageCache = useRef<Map<string, HTMLImageElement>>(new Map());

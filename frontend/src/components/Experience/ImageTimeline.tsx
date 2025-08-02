@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../../store/useStore';
 import { audioManager } from '../../utils/audioManager';
 import EventDetailOverlay from '../UI/EventDetailOverlay';
@@ -8,11 +8,6 @@ export default function ImageTimeline() {
   const { events, selectedEvent, setSelectedEvent } = useStore();
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
 
   // Auto-advance timer
   useEffect(() => {
@@ -40,11 +35,6 @@ export default function ImageTimeline() {
   }, [events.length]);
 
   const currentEvent = events[currentIndex];
-  
-  // Parallax transforms for depth
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
 
   const getCategoryGradient = (category: string) => {
     switch (category) {

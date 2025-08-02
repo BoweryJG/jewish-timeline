@@ -21,7 +21,7 @@ export default function VisualNarrative() {
     ), [events]
   );
   
-  const { currentImageLoaded, preloadAhead, getImageStyle } = useImagePreloader(imageUrls, {
+  const { preloadAhead, getImageStyle } = useImagePreloader(imageUrls, {
     preloadNext: 3,
     fadeDuration: 1500
   });
